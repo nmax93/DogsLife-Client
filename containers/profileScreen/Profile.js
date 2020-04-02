@@ -1,0 +1,50 @@
+import React, {Component} from 'react';
+import {inject, observer, Provider as MobxProvider} from 'mobx-react';
+import {ScrollView, View, StyleSheet} from 'react-native';
+import styled from 'styled-components/native';
+import UserInfo from './components/userInfo/UserInfo';
+import {DogInfo} from './components/dogInfo/dogInfo';
+import DogsDemo from '../../assets/data/dogsDemo';
+import {StoreProfileScreen} from './store';
+
+const styles = StyleSheet.create({
+  flexView: {
+    width: '100%',
+    flex: 1,
+  },
+});
+
+const BaseView = styled(View)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  backgroundcolor: #ffffff;
+  alignitems: center;
+`;
+
+@inject('rootStore')
+@observer
+class Profile extends Component {
+  constructor(props) {
+    super(props);
+    this.storeProfileScreen = new StoreProfileScreen(props.rootStore);
+  }
+
+  componentDidMount() {
+    this.storeProfileScreen.buildDogArray(DogsDemo);
+  }
+  render() {
+    return (
+      <MobxProvider storeProfileScreen={this.storeProfileScreen}>
+        <BaseView>
+          <UserInfo />
+          <ScrollView style={styles.flexView}>
+            <DogInfo />
+          </ScrollView>
+        </BaseView>
+      </MobxProvider>
+    );
+  }
+}
+export default Profile;
