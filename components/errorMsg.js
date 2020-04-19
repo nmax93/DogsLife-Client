@@ -1,25 +1,27 @@
-import React, { Component } from 'react';
-import { View, Text } from 'react-native';
-import { inject, observer} from 'mobx-react';
-import styled from 'styled-components/native';
-import { VerticalSpace } from '../../components/ui/VerticalSpace';
+import React, {Component} from 'react';
+import {StyleSheet, Dimensions, View, Text} from 'react-native';
+import {observer} from 'mobx-react';
+
+const width = Dimensions.get('window').width;
+
+const styles = StyleSheet.create({
+  text: {
+    fontSize: 0.04 * width,
+    color: '#b50029',
+    alignSelf: 'center',
+    top: width * 0.25,
+  },
+});
 
 @observer
-export class ErrorMsg extends Component{
-    render(){
-        const { height, store } = this.props;
-        const { errorMsg } = store;        
-        return(
-            <View style={{height: height}}>
-                <VerticalSpace height={10} />
-                <RedAlert>{errorMsg}</RedAlert>
-            </View>
-        );
-    }
+export class ErrorMsg extends Component {
+  render() {
+    const {height, store} = this.props;
+    const {errorMsg} = store;
+    return (
+      <View style={{height: height}}>
+        <Text style={styles.text}>{errorMsg}</Text>
+      </View>
+    );
+  }
 }
-
-const RedAlert = styled(Text)`
-color: #b50029;
-font-size: 10px;
-text-align: center; 
-`;

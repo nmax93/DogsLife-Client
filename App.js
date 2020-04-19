@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {View, Animated, StyleSheet, Image, Dimensions} from 'react-native';
-import App from './navigation/Navigation';
+import Navigation from './navigation/Navigation';
 
 const width = Dimensions.get('window').width;
 
@@ -33,11 +33,11 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class Root extends Component {
+export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      starting: true,
+      starting: false,
       screenOpacity: new Animated.Value(0),
     };
   }
@@ -46,14 +46,17 @@ export default class Root extends Component {
     Animated.timing(this.state.screenOpacity, {
       toValue: 1,
       duration: 1000,
+      useNativeDriver: true,
     }).start(() => {
       Animated.timing(this.state.screenOpacity, {
         toValue: 1,
         duration: 1000,
+        useNativeDriver: true,
       }).start(() => {
         Animated.timing(this.state.screenOpacity, {
           toValue: 0,
           duration: 1000,
+          useNativeDriver: true,
         }).start(() => this.setState({starting: false}));
       });
     });
@@ -75,7 +78,7 @@ export default class Root extends Component {
         </Animated.View>
       );
     } else {
-      return <App />;
+      return <Navigation />;
     }
   }
 }

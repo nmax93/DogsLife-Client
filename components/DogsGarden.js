@@ -41,6 +41,7 @@ export default class DogsGarden extends Component {
       Animated.timing(this.state.screenOpacity, {
         toValue: 1,
         duration: 200,
+        useNativeDriver: true,
       }).start(() => this.getPresentDogs());
     });
   };
@@ -49,6 +50,7 @@ export default class DogsGarden extends Component {
     Animated.timing(this.state.screenOpacity, {
       toValue: 0,
       duration: 200,
+      useNativeDriver: true,
     }).start(() => this.setState({isOpen: false, fetchedData: false}));
   };
 

@@ -1,11 +1,8 @@
-import { consts } from '../../../consts';
-export async function loginRequest(data) {    
-      const response = await fetch(`${consts.LocalHostUrl}/login`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
-    });    
-    return await response.json();
-  }
+export async function loginRequest(loginDetails) {
+  const response = await fetch('http://localhost:5050/login', {
+    method: 'POST',
+    headers: {'Content-type': 'application/json'},
+    body: JSON.stringify(loginDetails),
+  });
+  return await response.json();
+}

@@ -1,7 +1,7 @@
-import { observable, action, flow, computed } from 'mobx';
+import {observable, action, flow} from 'mobx';
 import AsyncStorage from '@react-native-community/async-storage';
-import { loginRequest } from '../../../routes/login';
-import { validateEmail } from './logic/validateEmail';
+import {loginRequest} from './routes';
+import {validateEmail} from './logic/validateEmail';
 
 export class StoreLoginScreen {
   constructor(rootStore) {
@@ -11,8 +11,7 @@ export class StoreLoginScreen {
   @observable email;
   @observable password;
   @observable errorMsg = null;
-  @observable loading;
-
+  @observable loading = false;
 
   @action
   setEmail(email) {
@@ -23,41 +22,38 @@ export class StoreLoginScreen {
   setPassword(password) {
     this.password = password;
   }
-  
+
   @action
   signInPressed = flow(function*(navigation) {
-      let loginData = { email:this.email, password:this.password };
-      try {
-          if(!this.email || !this.password) {
-              this.errorMsg = 'Empty Fields.';
+    let loginData = {username: this.email, password: this.password};
+    try {
+      if (!this.email || !this.password) {
+        this.errorMsg = 'Empty Fields.';
+      } else {
+        if (!validateEmail(this.email)) {
+          this.errorMsg = 'Enter Valid Email.';
+        } else {
+          this.loading = true;
+          const response = yield loginRequest(loginData);
+          if (!response) {
+            this.errorMsg = 'No response from server';
+          } else if (response.err) {
+            this.errorMsg = response.err;
+          } else {
+            this.loading = false;
+            navigation.navigate('SignedIn');
+            const userInfo = {
+              username: this.email,
+              password: this.password,
+              token: response.token,
+            };
+            yield AsyncStorage.setItem('userInfo', JSON.stringify(userInfo));
+            this.rootStore.setUserInfo(userInfo);
           }
-            if(this.email && this.password)
-            {
-                if(validateEmail(this.email)) {
-                    const response = yield loginRequest(loginData);
-                    if(!response.res){
-                        this.errorMsg = response.msg;
-              }
-                    if(response.res && response.data){
-                        this.rootStore.isLoading = true;    
-                        navigation.navigate('Loading')                    
-                        yield AsyncStorage.setItem('userInfo', JSON.stringify(response.data));
-                        this.rootStore.setUserInfo(response.data);
-                        this.rootStore.isLoading = false;    
-                    }
-                }
-                else {
-                    this.errorMsg = 'Enter Valid Email.';
-                }
-              
-            }
-
+        }
       }
-    catch (e) {
-            console.log("catch", e);
-      }
-      
-
-              
+    } catch (e) {
+      console.log('catch', e);
+    }
   });
 }

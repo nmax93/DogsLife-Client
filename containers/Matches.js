@@ -31,14 +31,13 @@ export default class Matches extends Component {
     let Xvalue;
     if (listNum === 1) {
       Xvalue = 0;
-    } else if (listNum === 2) {
-      Xvalue = -width;
     } else {
-      Xvalue = -width * 2;
+      Xvalue = -width;
     }
     Animated.timing(this.state.listDisplayed, {
       toValue: Xvalue,
       duration: 200,
+      useNativeDriver: false,
     }).start();
   };
 
@@ -59,7 +58,6 @@ export default class Matches extends Component {
               }}>
               <MatchesList matches={this.state.matches.owner_matches} />
               <MatchesList matches={this.state.matches.dog_matches} />
-              <MatchesList matches={[]} />
             </Animated.View>
           </View>
         )}
