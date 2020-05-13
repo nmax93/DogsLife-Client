@@ -29,8 +29,8 @@ export class Activities extends PureComponent {
 
 const RowView = styled(View)`
   width: 90%;
-  justifycontent: space-around;
-  flexdirection: row;
-  alignitems: center;
-  marginbottom: 20px;
+  justify-content: space-around;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 20px;
 `;

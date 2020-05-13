@@ -30,7 +30,7 @@ export class DogsList extends Component {
         const { userDogs, selectedDog } = this.props.storeProfileScreen;
         return (
             <View style={styles.dogListContainer}>
-            <FlatList
+            <FlatList style={styles.dogListContainer}
                 horizontal
                 data={userDogs.slice()}
                 keyExtractor={(item, index) => index.toString()}

@@ -7,21 +7,6 @@ import {DogInfo} from './components/dogInfo/dogInfo';
 import DogsDemo from '../../assets/data/dogsDemo';
 import {StoreProfileScreen} from './store';
 
-const styles = StyleSheet.create({
-  flexView: {
-    width: '100%',
-    flex: 1,
-  },
-});
-
-const BaseView = styled(View)`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  flex: 1;
-  backgroundcolor: #ffffff;
-  alignitems: center;
-`;
 
 @inject('rootStore')
 @observer
@@ -48,3 +33,20 @@ class Profile extends Component {
   }
 }
 export default Profile;
+
+
+const styles = StyleSheet.create({
+  flexView: {
+    width: '100%',
+    flex: 1,
+  },
+});
+
+const BaseView = styled(View)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+  background-color: #ffffff;
+  align-items: center;
+`;
