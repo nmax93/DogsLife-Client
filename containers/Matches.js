@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {View, Animated, Dimensions, ActivityIndicator} from 'react-native';
 import MatchesListController from '../components/MatchesListController';
 import MatchesList from '../components/MatchesList';
+import { consts } from '../consts';
 
 const width = Dimensions.get('window').width;
 
@@ -15,8 +16,8 @@ export default class Matches extends Component {
     };
   }
 
-  componentDidMount() {
-    fetch('http://localhost:5050/getMatches', {
+  async componentDidMount() {
+    await fetch(`${consts.serverUrl}/getMatches`, {
       method: 'POST',
       headers: {'Content-type': 'application/json'},
     })
@@ -24,7 +25,9 @@ export default class Matches extends Component {
       .then(matches => {
         this.setState({matches: matches, isLoaded: true});
       })
-      .catch();
+      .catch(e => {
+        console.log("Error in getMatches", e);
+          });
   }
 
   listController = listNum => {

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {View} from 'react-native';
 import MapView, {PROVIDER_GOOGLE, Marker} from 'react-native-maps';
 import DogsGarden from '../components/DogsGarden';
+import { consts } from '../consts';
 
 class Explore extends Component {
   constructor(props) {
@@ -10,8 +11,8 @@ class Explore extends Component {
     this.state = {gardens: [], displayedGarden: null};
   }
 
-  componentDidMount() {
-    fetch('http://localhost:5050/getGardens', {
+  async componentDidMount() {
+    await fetch(`${consts.serverUrl}/getGardens`, {
       method: 'GET',
       headers: {'Content-type': 'application/json'},
     })
@@ -19,7 +20,9 @@ class Explore extends Component {
       .then(data => {
         this.setState({gardens: data});
       })
-      .catch();
+      .catch(e => {
+        console.log("Error in getGardens", e);
+          });
   }
 
   mapGardens = () => {
