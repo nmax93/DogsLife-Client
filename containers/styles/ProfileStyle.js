@@ -85,7 +85,8 @@ export default StyleSheet.create({
   },
 
   userInfo: {
-    width: '100%',
+    width: DIMENSION_WIDTH * 0.95,
+    borderRadius: 10,
     justifyContent: 'space-between',
     flexDirection: 'row',
     padding: 10,
