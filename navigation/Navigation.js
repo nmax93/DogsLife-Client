@@ -5,9 +5,13 @@ import {
   createAppContainer,
   createStackNavigator,
 } from 'react-navigation';
+import {Dimensions} from 'react-native';
 import ExploreScreen from '../containers/Explore';
 import MatchesScreen from '../containers/Matches';
 import ProfileScreen from '../containers/profileScreen/Profile';
+
+const width = Dimensions.get('window').width;
+const height = Dimensions.get('window').height;
 
 const matchScreen = createStackNavigator({
   Matches: {
@@ -17,12 +21,14 @@ const matchScreen = createStackNavigator({
       headerLeft: null,
       headerTitleStyle: {
         flex: 1,
-        fontSize: 18,
-        color: '#333333',
+        fontSize: width * 0.061,
+        color: 'black',
+        fontWeight: 'bold'
       },
       headerStyle: {
         backgroundColor: '#FFF',
-        height: 55,
+        height: height * 0.08,
+        elevation: 1,
       },
       tabBarIcon: ({focused}) => (
         <Image
@@ -46,12 +52,14 @@ const exploreScreen = createStackNavigator({
       headerLeft: null,
       headerTitleStyle: {
         flex: 1,
-        fontSize: 18,
-        color: '#333333',
+        fontSize: width * 0.061,
+        color: 'black',
+        fontWeight: 'bold'
       },
       headerStyle: {
         backgroundColor: '#FFF',
-        height: 55,
+        height: height * 0.08,
+        elevation: 1,
       },
       tabBarIcon: ({focused}) => (
         <Image
@@ -75,12 +83,14 @@ const profileScreen = createStackNavigator({
       headerLeft: null,
       headerTitleStyle: {
         flex: 1,
-        fontSize: 18,
-        color: '#333333',
+        fontSize: width * 0.061,
+        color: 'black',
+        fontWeight: 'bold'
       },
       headerStyle: {
         backgroundColor: '#FFF',
-        height: 55,
+        height: height * 0.08,
+        elevation: 1,
       },
       tabBarIcon: ({focused}) => (
         <Image
