@@ -11,7 +11,6 @@ export default class MatchesListController extends Component {
       curSelectedButton: 1,
       button1color: '#8e725b',
       button2color: 'darkgrey',
-      button3color: 'darkgrey',
       brownLineX: new Animated.Value(width / 50),
     };
   }
@@ -22,25 +21,16 @@ export default class MatchesListController extends Component {
     }
     let Xvalue;
     if (num === 1) {
-      Xvalue = width * 0.02;
+      Xvalue = width * 0.01;
       this.setState({
         button1color: '#8e725b',
         button2color: 'darkgrey',
-        button3color: 'darkgrey',
       });
-    } else if (num === 2) {
-      Xvalue = width * 0.355;
+    } else {
+      Xvalue = width * 0.51;
       this.setState({
         button2color: '#8e725b',
         button1color: 'darkgrey',
-        button3color: 'darkgrey',
-      });
-    } else {
-      Xvalue = width * 0.69;
-      this.setState({
-        button3color: '#8e725b',
-        button1color: 'darkgrey',
-        button2color: 'darkgrey',
       });
     }
     this.setState({curSelectedButton: num}, () => {
@@ -48,6 +38,7 @@ export default class MatchesListController extends Component {
       Animated.timing(this.state.brownLineX, {
         toValue: Xvalue,
         duration: 250,
+        useNativeDriver: false,
       }).start();
     });
   };
@@ -67,13 +58,6 @@ export default class MatchesListController extends Component {
           onPress={() => this.onButtonClick(2)}>
           <Text style={[styles.text, {color: this.state.button2color}]}>
             DOG
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={styles.button}
-          onPress={() => this.onButtonClick(3)}>
-          <Text style={[styles.text, {color: this.state.button3color}]}>
-            OWNER & DOG
           </Text>
         </TouchableOpacity>
         <View style={styles.beigeLine} />

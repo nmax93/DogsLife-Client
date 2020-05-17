@@ -1,8 +1,8 @@
 /**
  * @format
  */
-import React, { Component } from 'react'
-import { Provider } from 'mobx-react'
+import React, {Component} from 'react';
+import {Provider} from 'mobx-react';
 import {AppRegistry} from 'react-native';
 import { YellowBox } from 'react-native'
 import App from './App';
@@ -20,7 +20,7 @@ class Application extends Component {
       )
     }
   }
-
+}
 
 AppRegistry.registerComponent(appName, () => Application);
 

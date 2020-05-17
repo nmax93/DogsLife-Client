@@ -2,13 +2,16 @@ import React from 'react';
 import {Image} from 'react-native';
 import {
   createBottomTabNavigator,
-  createAppContainer,
+  createSwitchNavigator,
   createStackNavigator,
+  createAppContainer,
 } from 'react-navigation';
 import {Dimensions} from 'react-native';
 import ExploreScreen from '../containers/Explore';
 import MatchesScreen from '../containers/Matches';
 import ProfileScreen from '../containers/profileScreen/Profile';
+import {LoginScreen} from '../containers/loginScreen/LoginScreen';
+import {RegisterScreen} from '../containers/registerScreen/RegisterScreen';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -30,16 +33,6 @@ const matchScreen = createStackNavigator({
         height: height * 0.08,
         elevation: 1,
       },
-      tabBarIcon: ({focused}) => (
-        <Image
-          source={
-            focused
-              ? require('../images/black_map.png')
-              : require('../images/grey_map.png')
-          }
-          style={{height: 30, aspectRatio: 1}}
-        />
-      ),
     },
   },
 });
@@ -61,16 +54,6 @@ const exploreScreen = createStackNavigator({
         height: height * 0.08,
         elevation: 1,
       },
-      tabBarIcon: ({focused}) => (
-        <Image
-          source={
-            focused
-              ? require('../images/black_map.png')
-              : require('../images/grey_map.png')
-          }
-          style={{height: 30, aspectRatio: 1}}
-        />
-      ),
     },
   },
 });
@@ -92,16 +75,6 @@ const profileScreen = createStackNavigator({
         height: height * 0.08,
         elevation: 1,
       },
-      tabBarIcon: ({focused}) => (
-        <Image
-          source={
-            focused
-              ? require('../images/black_map.png')
-              : require('../images/grey_map.png')
-          }
-          style={{height: 30, aspectRatio: 1}}
-        />
-      ),
     },
   },
 });
@@ -167,4 +140,36 @@ const App = createBottomTabNavigator(
   },
 );
 
-export default createAppContainer(App);
+const Auth = createStackNavigator(
+  {
+    Login: {
+      screen: LoginScreen,
+    },
+    Register: {
+      screen: RegisterScreen,
+    },
+  },
+  {
+    headerMode: 'none',
+    navigationOptions: {
+      headerVisible: false,
+    },
+    initialRouteName: 'Login',
+  },
+);
+
+const Navigation = createSwitchNavigator(
+  {
+    SignedIn: {
+      screen: App,
+    },
+    SignedOut: {
+      screen: Auth,
+    },
+  },
+  {
+    initialRouteName: 'SignedOut',
+  },
+);
+
+export default createAppContainer(Navigation);
