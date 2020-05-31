@@ -128,7 +128,7 @@ const App = createBottomTabNavigator(
     },
   },
   {
-    initialRouteName: 'Explore',
+    initialRouteName: 'Match',
     tabBarOptions: {
       showLabel: false,
       style: {
@@ -168,7 +168,7 @@ const Navigation = createSwitchNavigator(
     },
   },
   {
-    initialRouteName: 'SignedOut',
+    initialRouteName: 'SignedIn',
   },
 );
 

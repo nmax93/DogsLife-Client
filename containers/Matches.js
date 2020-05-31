@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {View, Animated, Dimensions, ActivityIndicator} from 'react-native';
 import MatchesListController from '../components/MatchesListController';
 import MatchesList from '../components/MatchesList';
-import { consts } from '../consts';
+import {consts} from '../consts';
 
 const width = Dimensions.get('window').width;
 
@@ -12,30 +12,40 @@ export default class Matches extends Component {
     this.state = {
       isLoaded: false,
       listDisplayed: new Animated.Value(0),
-      matches: {},
+      systemMatches: [],
+      geoMatches: [],
+      collarMatches: [],
     };
   }
 
-  async componentDidMount() {
-    await fetch(`${consts.serverUrl}/getMatches`, {
+  componentDidMount() {
+    fetch(`${consts.LocalHostUrl}/getMatches`, {
       method: 'POST',
       headers: {'Content-type': 'application/json'},
+      body: JSON.stringify({userId: 102, token: 'ASD123RT'}),
     })
       .then(res => res.json())
       .then(matches => {
-        this.setState({matches: matches, isLoaded: true});
+        this.setState({
+          systemMatches: matches.systemMatches,
+          geoMatches: matches.geoMatches,
+          collarMatches: matches.collarMatches,
+          isLoaded: true,
+        });
       })
       .catch(e => {
-        console.log("Error in getMatches", e);
-          });
+        console.log('Error in getMatches', e);
+      });
   }
 
   listController = listNum => {
     let Xvalue;
     if (listNum === 1) {
       Xvalue = 0;
-    } else {
+    } else if (listNum === 2) {
       Xvalue = -width;
+    } else {
+      Xvalue = -width * 2;
     }
     Animated.timing(this.state.listDisplayed, {
       toValue: Xvalue,
@@ -59,8 +69,9 @@ export default class Matches extends Component {
                 flexDirection: 'row',
                 left: this.state.listDisplayed,
               }}>
-              <MatchesList matches={this.state.matches.owner_matches} />
-              <MatchesList matches={this.state.matches.dog_matches} />
+              <MatchesList matches={this.state.systemMatches} type={1} />
+              <MatchesList matches={this.state.geoMatches} type={2} />
+              <MatchesList matches={this.state.collarMatches} type={3} />
             </Animated.View>
           </View>
         )}

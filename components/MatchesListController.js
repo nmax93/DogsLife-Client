@@ -11,6 +11,7 @@ export default class MatchesListController extends Component {
       curSelectedButton: 1,
       button1color: '#8e725b',
       button2color: 'darkgrey',
+      button3color: 'darkgrey',
       brownLineX: new Animated.Value(width / 50),
     };
   }
@@ -25,12 +26,21 @@ export default class MatchesListController extends Component {
       this.setState({
         button1color: '#8e725b',
         button2color: 'darkgrey',
+        button3color: 'darkgrey',
       });
-    } else {
-      Xvalue = width * 0.51;
+    } else if (num === 2) {
+      Xvalue = width * 0.34;
       this.setState({
         button2color: '#8e725b',
         button1color: 'darkgrey',
+        button3color: 'darkgrey',
+      });
+    } else {
+      Xvalue = width * 0.67;
+      this.setState({
+        button2color: 'darkgrey',
+        button1color: 'darkgrey',
+        button3color: '#8e725b',
       });
     }
     this.setState({curSelectedButton: num}, () => {
@@ -50,14 +60,21 @@ export default class MatchesListController extends Component {
           style={styles.button}
           onPress={() => this.onButtonClick(1)}>
           <Text style={[styles.text, {color: this.state.button1color}]}>
-            OWNER
+            MATCHES
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
           onPress={() => this.onButtonClick(2)}>
           <Text style={[styles.text, {color: this.state.button2color}]}>
-            DOG
+            AROUND YOU
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => this.onButtonClick(3)}>
+          <Text style={[styles.text, {color: this.state.button3color}]}>
+            DOG FRIENDS
           </Text>
         </TouchableOpacity>
         <View style={styles.beigeLine} />

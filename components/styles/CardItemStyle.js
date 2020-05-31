@@ -7,17 +7,16 @@ const DARK_GRAY = '#333333';
 export default StyleSheet.create({
   containerCardItem: {
     width: SCREEN_WIDTH * 0.46,
-    height: SCREEN_WIDTH * 0.5,
+    height: SCREEN_WIDTH * 0.4,
     backgroundColor: WHITE,
     borderRadius: 8,
     alignItems: 'center',
     margin: SCREEN_WIDTH * 0.02,
   },
   image: {
-    width: SCREEN_WIDTH * 0.46,
-    height: SCREEN_WIDTH * 0.4,
-    borderTopLeftRadius: 8,
-    borderTopRightRadius: 8,
+    width: SCREEN_WIDTH * 0.16,
+    height: SCREEN_WIDTH * 0.16,
+    borderRadius: SCREEN_WIDTH * 0.08,
   },
   textContainer: {
     width: '100%',

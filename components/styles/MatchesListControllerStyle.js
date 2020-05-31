@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   },
   button: {
     height: '100%',
-    width: width / 2,
+    width: width / 3,
     justifyContent: 'center',
   },
   beigeLine: {
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     marginRight: '2%',
   },
   brownLine: {
-    width: '48%',
+    width: '31%',
     borderBottomWidth: 2,
     borderColor: '#8e725b',
     position: 'absolute',
