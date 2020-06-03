@@ -4,13 +4,9 @@ import {View, ScrollView} from 'react-native';
 import CardItem from './CardItem';
 
 export default class MatchesList extends Component {
-  componentDidMount() {
-    this.mapMatches();
-  }
-
   mapMatches = () => {
     const matches = this.props.matches.map((item, index) => {
-      return <CardItem key={index} image={item.avatar} name={item.name} />;
+      return <CardItem key={index} match={item} type={this.props.type} />;
     });
     return matches;
   };
@@ -19,7 +15,6 @@ export default class MatchesList extends Component {
     return (
       <ScrollView style={styles.list}>
         <View style={styles.matchesContainer}>
-          {this.mapMatches()}
           {this.mapMatches()}
           <View style={styles.bottomPadding} />
         </View>
