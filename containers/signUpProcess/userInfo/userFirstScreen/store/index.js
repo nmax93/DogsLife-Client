@@ -1,5 +1,4 @@
 import {observable, action, flow} from 'mobx';
-import AsyncStorage from '@react-native-community/async-storage';
 
 export class StoreUserFirstScreen {
     constructor(rootStore) {
@@ -23,13 +22,11 @@ export class StoreUserFirstScreen {
     
       @action
       setUserMacId(mac){
-      console.log("StoreUserFirstScreen -> deciveMacId -> mac", mac)
         this.signupUserObject.deciveMacId = mac;
       }
 
       @action
       setName(name) {
-        console.log("signupStore -> setUserName -> name", name)
         this.name = name;
         this.signupUserObject.userName = name;
       }
@@ -38,12 +35,10 @@ export class StoreUserFirstScreen {
       setGender(gender) { 
         this.gender = gender;
         this.signupUserObject.userGender = gender;
-        console.log("StoreSignup -> setUserGender -> this.userGender", this.gender)
       }
     
       @action
       setAvatar(userImage) {
-        console.log("signupStore -> setUserAvatar -> userImage", userImage)
         this.avatar = userImage;
         this.signupUserObject.userAvatar = userImage;
       }
