@@ -9,10 +9,7 @@ export const Base = props => (
 );
 
 const BaseView = styled(View)`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    flex:1;
-    backgroundColor: ${props => props.color};
+    align-items: center;
+    background-color: ${props => props.color};
 `;
 
