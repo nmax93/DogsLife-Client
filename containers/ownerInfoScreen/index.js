@@ -28,7 +28,7 @@ class OwnerInfoScreen extends Component {
     const { avatar, loading } = this.storeOwnerInfoScreen;
     return (
       <MobxProvider storeOwnerInfoScreen={this.storeOwnerInfoScreen}>
-        {!loading ? <LoadingLady /> : <ImageBackground
+        {loading ? <LoadingLady /> : <ImageBackground
           source={require('../../images/bg.png')}
           style={styles.bg}>
           <ScrollView style={styles.containerProfile}>

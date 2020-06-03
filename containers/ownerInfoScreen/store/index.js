@@ -84,13 +84,13 @@ export class StoreOwnerInfoScreen {
   @action
   getOwnerDogs = flow(function*(dogsIds) {
     try {
-      this.length = true;
+      this.loading = true;
       const response = yield getOwnersDogs(dogsIds);
       if (response == 0)
-        this.errorMsg = 'Sorry we encountered a problem. Try again.';
+        this.errorMsg = 'Sorry, we encountered a problem. Try again.';
       if (response) {
         this.dogsArray = response;
-        this.loading = true;
+        this.loading = false;
       }
     } catch (e) {
       this.errorMsg = 'Network error';
