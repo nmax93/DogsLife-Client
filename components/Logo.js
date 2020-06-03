@@ -5,9 +5,9 @@ const width = Dimensions.get('window').width;
 
 export const Logo = () => (
   <View style={styles.container}>
-    <View style={styles.pugContainer}>
+    {/* <View style={styles.pugContainer}>
       <Image source={require('../images/Pug.png')} style={styles.pug} />
-    </View>
+    </View> */}
     <View style={styles.dogslifeContainer}>
       <Image
         source={require('../images/dogslife.png')}
@@ -17,9 +17,9 @@ export const Logo = () => (
   </View>
 );
 
+
 const styles = StyleSheet.create({
   container: {
-    top: width * 0.15,
     width: '100%',
     alignItems: 'center',
   },
