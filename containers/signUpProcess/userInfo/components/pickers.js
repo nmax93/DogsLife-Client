@@ -239,7 +239,7 @@ export const BreedPicker = props => {
         style={{
           ...breedPickerSelectStyles,
           iconContainer: {
-            top: 7,
+            top: 10,
             right: 12,
           },
         }}
@@ -338,14 +338,12 @@ const styles = StyleSheet.create({
         height: height * 0.056,
         width: width * 0.88,
         fontSize: width * 0.04,
-        // backgroundColor: '#ffffff',
         alignSelf: 'center',
         borderRadius: 10,
         paddingLeft: 15,
         fontWeight: 'bold',
-        elevation: 0.5,
         color:'black',
-      paddingRight: 30, // to ensure the text is never behind the icon
+      paddingRight: 30,
     },
   });
 
@@ -354,14 +352,12 @@ const styles = StyleSheet.create({
         height: height * 0.056,
         width: width * 0.88 /3.1,
         fontSize: width * 0.04,
-        // backgroundColor: '#ffffff',
         alignSelf: 'center',
         borderRadius: 10,
         paddingLeft: 15,
         fontWeight: 'bold',
-        elevation: 0.5,
         color:'black',
-      paddingRight: 30, // to ensure the text is never behind the icon
+      paddingRight: 30,
     },
   });
 
@@ -370,14 +366,12 @@ const styles = StyleSheet.create({
         height: height * 0.056,
         width: width * 0.365,
         fontSize: width * 0.04,
-        // backgroundColor: '#ffffff',
         alignSelf: 'center',
         borderRadius: 10,
         paddingLeft: 8,
         fontWeight: 'bold',
-        elevation: 0.5,
         color:'black',
-      paddingRight: 30, // to ensure the text is never behind the icon
+      paddingRight: 30, 
     },
   });
   const breedPickerSelectStyles = StyleSheet.create({
@@ -385,37 +379,11 @@ const styles = StyleSheet.create({
         height: height * 0.056,
         width: width * 0.5,
         fontSize: width * 0.04,
-        // backgroundColor: '#ffffff',
         alignSelf: 'center',
         borderRadius: 10,
         paddingLeft: 15,
         fontWeight: 'bold',
-        elevation: 0.5,
         color:'black',
-      paddingRight: 30, // to ensure the text is never behind the icon
+      paddingRight: 30,
     },
   });
-
-
-//   <RNPickerSelect
-//             placeholder={placeholder}
-//             items={sports}
-//             onValueChange={value => {
-//               this.setState({
-//                 favSport4: value,
-//               });
-//             }}
-//             style={{
-//               ...pickerSelectStyles,
-//               iconContainer: {
-//                 top: 10,
-//                 right: 12,
-//               },
-//             }}
-//             value={this.state.favSport4}
-//             useNativeAndroidPickerStyle={false}
-//             textInputProps={{ underlineColor: 'yellow' }}
-//             Icon={() => {
-//               return <Ionicons name="md-arrow-down" size={24} color="gray" />;
-//             }}
-//           />
