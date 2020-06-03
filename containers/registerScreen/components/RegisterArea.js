@@ -9,5 +9,4 @@ export const RegisterArea = props => (
 const RegisterView = styled(View)`
   width: 100%;
   height: 100%;
-  align-self: center;
 `;

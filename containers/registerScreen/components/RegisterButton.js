@@ -8,12 +8,11 @@ const styles = StyleSheet.create({
   completeButton: {
     width: width * 0.5,
     aspectRatio: 4 / 1,
-    backgroundColor: '#c8d9cb',
+    backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: width * 0.38,
     alignSelf: 'center',
-    top: width * 0.25,
   },
   text: {
     fontSize: 0.05 * width,
