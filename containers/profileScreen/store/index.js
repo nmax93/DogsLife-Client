@@ -1,6 +1,5 @@
-import { observable, action, flow, computed } from 'mobx';
-// import AsyncStorage from '@react-native-community/async-storage';
-
+import { observable, action, flow} from 'mobx';
+import {getProfileInfo} from './routes'
 
 export class StoreProfileScreen {
   constructor(rootStore) {
@@ -16,10 +15,10 @@ export class StoreProfileScreen {
   @observable collar = null;
   @observable groomingList = [];
   @observable feediingList = [];
-  @observable walkList = [];
-  @observable dogFriends = [];
-  @observable accountPrivacy;
-  //   @observable avgTimeInGarden
+
+  @observable userName;
+  @observable visitedGardens = [];
+  @observable userAvatar;
   @observable userDogs = [];
   @observable selectedDog;
 
@@ -29,37 +28,52 @@ export class StoreProfileScreen {
       this.name = dogObject.name;
       this.description = dogObject.description;
       this.breed = dogObject.breed;
-      this.personality = dogObject.personality.slice();
-      this.dateOfBirth = dogObject.dateOfBirth;
-      this.image = dogObject.image;
-      //   this.collar = dogObject.collar;
-    //   this.groomingList = dogObject.groomingList.slice();
-    //   this.feediingList = dogObject.feediingList.slice();
-    //   this.walkList = dogObject.walkList.slice();
-      this.dogFriends = dogObject.dogFriends.slice();
-      this.accountPrivacy = dogObject.accountPrivacy;
-      console.log("StoreProfileScreen -> setSelectedDog -> this.accountPrivacy", this.accountPrivacy)
-  }
+      this.image = dogObject.avatar;
+      }
 
 
   @action
   setDogName(text){
       this.name = text;
-      console.log("StoreProfileScreen -> setDogName -> this.name", this.name)
   }
 
   @action
   setDogDescription(text){
       this.description = text;
-      console.log("StoreProfileScreen -> setDogDescription -> this.description", this.description)
   }
 
-  // not in use when DB connected
   @action
-  buildDogArray(demo){
-      const releventDogs = demo.slice().filter(obj => obj.owmner_id === 1);
-      this.userDogs = releventDogs;
-      this.setSelectedDog(releventDogs[0]);
+  buildDogArray(userDogsFromServer){
+      this.userDogs = userDogsFromServer;
+      this.setSelectedDog(userDogsFromServer[0]);
   }
+
+  @action
+  buildUserProfile(user){
+      this.userName = user.name;
+      this.visitedGardens = user.visitedGardens;
+      this.userAvatar = user.avatar;
+
+  }
+
+
+  @action
+  getProfile = flow(function*() {
+    try {
+          const response = yield getProfileInfo(105);
+          if (response.status == 500) {
+            this.errorMsg = 'No response from server';
+          } else if (response.status == 501) {
+            this.errorMsg = response;
+          } else {
+            this.loading = false;
+            this.buildDogArray(response.userDogs)
+            this.buildUserProfile(response.foundUser)
+          }
+    } catch (e) {
+      this.errorMsg = 'Network error'
+      console.log('getProfile catch', e);
+    }
+  });
   
 }
