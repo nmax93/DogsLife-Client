@@ -6,11 +6,14 @@ import {
   Text,
   Image,
   ScrollView,
-  TouchableOpacity,
-  ActivityIndicator,
+  TouchableOpacity
 } from 'react-native';
 import styles from './styles/DogsGardenStyle';
-import PresentDog from './PresentDog';
+import PresentDog from './presentDog/PresentDog';
+import Icon from 'react-native-vector-icons/AntDesign';
+import {WhenGardenEmpty} from './whenGardenEmpty';
+import {VerticalSpaceP} from './verticalSpace';
+import {SmallText} from '../containers/styles/fonts';
 
 export default class DogsGarden extends Component {
   constructor(props) {
@@ -20,6 +23,7 @@ export default class DogsGarden extends Component {
       screenOpacity: new Animated.Value(0),
       fetchedData: false,
       presentDogs: [],
+      isPressedOtherRank: false,
     };
   }
 
@@ -63,16 +67,25 @@ export default class DogsGarden extends Component {
   };
 
   mapPresentDogs = () => {
+    if (this.state.presentDogs.length === 0) return <WhenGardenEmpty />;
+
     const presentDogs = this.state.presentDogs.map((item, index) => {
-      return <PresentDog key={index} data={item} />;
+      return (
+        <PresentDog
+          gardenId={this.props.data.id}
+          visitedDogs={this.props.data.daily_visitors[0].dogs_visitors}
+          key={index}
+          data={item}
+        />
+      );
     });
     return presentDogs;
   };
 
   render() {
-    const name = this.props.data.name;
-    const image = this.props.data.image;
-
+    const {name, image, rating} = this.props.data;
+    const {cleanliness_score, facilities_score} = rating;
+    const totalScore = (cleanliness_score + facilities_score) / 2;
     return (
       this.state.isOpen && (
         <Animated.View
@@ -92,15 +105,65 @@ export default class DogsGarden extends Component {
                 />
               </TouchableOpacity>
             </View>
-            <View style={styles.titleSection}>
-              <Text style={styles.title}>{name}</Text>
+            <View style={styles.nameAndRank}>
+              <View style={styles.titleSection}>
+                <Text style={styles.title}>{name}</Text>
+                <TouchableOpacity
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    marginLeft: 25,
+                  
+                  }}
+                  onPress={() =>
+                    this.setState({
+                      isPressedOtherRank: !this.state.isPressedOtherRank,
+                    })
+                  }>
+                  <Text>{totalScore} </Text>
+                  <Icon name="star" size={17} color="black" />
+                </TouchableOpacity>
+              </View>
+              <TouchableOpacity
+                style={{
+                  paddingVertical: 5,
+                  paddingHorizontal: 5,
+                  backgroundColor: '#e0bab0',
+                  elevation: 2,
+                  borderRadius: 10,
+                }}
+                onPress={() =>
+                  this.props.navigation.navigate('Review', {
+                    gardenName: name,
+                    gardenId: this.props.data.id,
+                  })
+                }>
+                <SmallText>Reviews</SmallText>
+              </TouchableOpacity>
             </View>
-            <View style={styles.textSection}>
-              <Text style={styles.text}>Currently present dogs:</Text>
-            </View>
+            {this.state.isPressedOtherRank ? (
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignSelf: 'center',
+                  alignItems: 'center',
+                  paddingTop: 20
+                }}>
+                <Text>Facilities: {facilities_score} </Text>
+                <Icon name="star" size={15} color="black" />
+                <Text> | cleanliness: {cleanliness_score} </Text>
+                <Icon name="star" size={15} color="black" />
+              </View>
+            ) : null}
             <ScrollView style={styles.presentDogsSection}>
               {!this.state.fetchedData && (
-                <ActivityIndicator size={'large'} style={{marginTop: 20}} />
+                <View style={{alignItems: 'center'}}>
+                  <VerticalSpaceP height={0.11} />
+                  <Image
+                    source={require('../images/gifi.gif')}
+                    style={{width: 265, height: 150, alignSelf: 'center'}}
+                  />
+                </View>
               )}
               {this.state.fetchedData && this.mapPresentDogs()}
             </ScrollView>
