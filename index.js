@@ -15,17 +15,18 @@ class Application extends Component {
       return (
         <Provider rootStore={rootStore}>
             <App />
-            <BleController />
+            {/* <BleController /> */}
         </Provider>
       )
     }
   }
-}
+
 
 AppRegistry.registerComponent(appName, () => Application);
 
 
 YellowBox.ignoreWarnings([
   'VirtualizedLists should never be nested', // TODO: Remove when fixed
-  'componentWillReceiveProps has been renamed, and is not recommended for use.'
+  'componentWillReceiveProps has been renamed, and is not recommended for use.',
+  'Picker has been extracted from react-native core and will be removed in a future release.'
 ])
