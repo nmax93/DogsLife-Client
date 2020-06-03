@@ -218,6 +218,22 @@ export const BreedPicker = props => {
           {label: 'Golden Retriver', value: 'Golden Retriver'},
           {label: 'Bulldog', value: 'Bulldog'},
           {label: 'Corgi', value: 'Corgi'},
+          {label: 'Akita', value: 'Akita'},
+          {label: 'Boxer', value: 'Boxer'},
+          {label: 'Border Collie', value: 'Border Collie'},
+          {label: 'Australian Shepherd', value: 'Australian Shepherd'},
+          {label: 'Chihuahua', value: 'Chihuahua'},
+          {label: 'Canaan Dog', value: 'Canaan Dog'},
+          {label: 'Rottweiler', value: 'Rottweiler'},
+          {label: 'Dalmatian', value: 'Dalmatian'},
+          {label: 'French Bulldog', value: 'French Bulldog'},
+          {label: 'Belgian Malinois', value: 'Belgian Malinois'},
+          {label: 'Beagle', value: 'Beagle'},
+          {label: 'Boston Terrier', value: 'Boston Terrier'},
+          {label: 'Pitbull', value: 'Pitbull'},
+          {label: 'Siberian Husky', value: 'Siberian Husky'},
+          {label: 'Alaskan Malamute', value: 'Alaskan Malamute'},
+
         ]}
         onValueChange={value => props.store.setBreed(value)}
         style={{
