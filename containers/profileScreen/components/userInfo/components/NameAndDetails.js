@@ -3,14 +3,13 @@ import styles from '../../../../styles/ProfileStyle';
 import {
   TouchableOpacity,
 } from 'react-native';
-import { MedBoldText, SmallText } from '../../../../styles/fonts';
+import { MedBoldText } from '../../../../styles/fonts';
 
 
 const NameAndDetails = props => {
   return (
     <TouchableOpacity>
         <MedBoldText style={styles.name}>{props.name}</MedBoldText>
-        <SmallText>{props.details}</SmallText>
     </TouchableOpacity>
   );
 };

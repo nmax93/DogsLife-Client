@@ -18,7 +18,9 @@ export class DogImage extends PureComponent {
     const { image } = this.props.storeProfileScreen;
     return(
       <ImageBackground
-      source={image}
+      source={{
+        uri: image,
+      }}
       style={styles.dogImageBackground}
       imageStyle={styles.dogImage}>
           <TouchableOpacity style={styles.editButton} onPress={this.onPressEditImage}>
@@ -28,8 +30,6 @@ export class DogImage extends PureComponent {
     )
   }
 }
-
-// not responsive image
 const styles = StyleSheet.create({
   editButton:{
     position: 'absolute', 
@@ -39,6 +39,8 @@ const styles = StyleSheet.create({
 
   dogImage: {
     borderRadius: 60,
+    borderWidth: 2,
+    borderColor: '#e5c68b'
 
   },
   dogImageBackground: {

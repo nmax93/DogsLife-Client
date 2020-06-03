@@ -4,7 +4,6 @@ import {ScrollView, View, StyleSheet} from 'react-native';
 import styled from 'styled-components/native';
 import UserInfo from './components/userInfo/UserInfo';
 import {DogInfo} from './components/dogInfo/dogInfo';
-import DogsDemo from '../../assets/data/dogsDemo';
 import {StoreProfileScreen} from './store';
 
 
@@ -16,8 +15,8 @@ class Profile extends Component {
     this.storeProfileScreen = new StoreProfileScreen(props.rootStore);
   }
 
-  componentDidMount() {
-    this.storeProfileScreen.buildDogArray(DogsDemo);
+  async componentDidMount() {
+    await this.storeProfileScreen.getProfile();
   }
   render() {
     return (

@@ -12,16 +12,6 @@ export class Activities extends PureComponent {
           <SmallText style={styles.textButton}>Feed</SmallText>
           <SmallText style={styles.textButton}>History</SmallText>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.roundedButton, styles.walkButtonColor]}>
-          <SmallText style={styles.textButton}>Walk</SmallText>
-          <SmallText style={styles.textButton}>History</SmallText>
-        </TouchableOpacity>
-        <TouchableOpacity
-          style={[styles.roundedButton, styles.groomButtonColor]}>
-          <SmallText style={styles.textButton}>Grooming</SmallText>
-          <SmallText style={styles.textButton}>History</SmallText>
-        </TouchableOpacity>
       </RowView>
     );
   }

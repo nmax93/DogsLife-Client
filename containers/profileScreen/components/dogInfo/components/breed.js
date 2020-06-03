@@ -6,10 +6,6 @@ import { MedBoldText, SmallText } from '../../../../styles/fonts';
 
 @inject('storeProfileScreen')@observer
 export class DogBreed extends PureComponent {
-
-    //    onPress = () => {
-//        this.props.navigation.navigate('SetBreed');
-//    }
   render(){
     const { breed } = this.props.storeProfileScreen;
     return (
