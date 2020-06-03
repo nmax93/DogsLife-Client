@@ -7,11 +7,26 @@ import {
   createAppContainer,
 } from 'react-navigation';
 import {Dimensions} from 'react-native';
-import ExploreScreen from '../containers/Explore';
+import ExploreScreen from '../containers/exploreScreen/Explore';
 import MatchesScreen from '../containers/Matches';
 import ProfileScreen from '../containers/profileScreen/Profile';
+import DogInfoScreen from '../containers/dogInfoScreen/dogProfile';
+import OwnerInfoScreen from '../containers/ownerInfoScreen';
+
 import {LoginScreen} from '../containers/loginScreen/LoginScreen';
 import {RegisterScreen} from '../containers/registerScreen/RegisterScreen';
+import{SignupEntry} from '../containers/signUpProcess/entryScreen/entryScreen';
+import{UserFirstScreen} from '../containers/signUpProcess/userInfo/userFirstScreen';
+import{UserSecondScreen} from '../containers/signUpProcess/userInfo/userSecondScreen';
+import{UserThirdScreen} from '../containers/signUpProcess/userInfo/userThirdScreen';
+import{UserForthScreen} from '../containers/signUpProcess/userInfo/userForthScreen';
+import{DogFirstScreen} from '../containers/signUpProcess/dogInfo/dogFirstScreen';
+import{DogSecondScreen} from '../containers/signUpProcess/dogInfo/dogSecondScreen';
+import{DogThirdScreen} from '../containers/signUpProcess/dogInfo/dogThirdScreen';
+import{ScanCollarScreen} from '../containers/signUpProcess/scanQr'
+import { WriteReview } from '../containers/exploreScreen/components/writeReview/writeReview'
+import SelectLocationScreen from '../containers/signUpProcess/userInfo/addressPickerScreen'
+import {SignupFinishScreen} from '../containers/signUpProcess/finishScreen'
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -26,7 +41,7 @@ const matchScreen = createStackNavigator({
         flex: 1,
         fontSize: width * 0.061,
         color: 'black',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
       },
       headerStyle: {
         backgroundColor: '#FFF',
@@ -40,23 +55,83 @@ const matchScreen = createStackNavigator({
 const exploreScreen = createStackNavigator({
   Explore: {
     screen: ExploreScreen,
-    navigationOptions: {
-      headerTitle: 'Explore',
-      headerLeft: null,
-      headerTitleStyle: {
-        flex: 1,
-        fontSize: width * 0.061,
-        color: 'black',
-        fontWeight: 'bold'
-      },
-      headerStyle: {
-        backgroundColor: '#FFF',
-        height: height * 0.08,
-        elevation: 1,
-      },
-    },
+    // navigationOptions: {
+    //   // headerTitle: 'Explore',
+    //   headerTitleStyle: {
+    //     flex: 1,
+    //     fontSize: width * 0.061,
+    //     color: 'black',
+    //     fontWeight: 'bold',
+    //   },
+    //   headerStyle: {
+    //     backgroundColor: '#FFF',
+    //     height: height * 0.08,
+    //     elevation: 1,
+    //   },
+    // },
   },
-});
+  Review: {
+    screen: WriteReview
+  },
+  Signup: {
+    screen: SignupEntry,
+  },
+  UserFirst: {
+    screen: UserFirstScreen,
+  },
+  UserSecond: {
+    screen: UserSecondScreen
+  },
+  UserThird: {
+    screen: UserThirdScreen
+  },
+  UserForth :{
+    screen: UserForthScreen
+  },
+  DogFirst: {
+    screen:DogFirstScreen
+  },
+  DogSecond:{
+    screen:DogSecondScreen
+  },
+  DogThird: {
+    screen: DogThirdScreen
+  },
+  ScanCollar: {
+    screen: ScanCollarScreen
+  },
+  SelectLocation: {
+    screen: SelectLocationScreen
+  },
+  SignupFinish: {
+    screen: SignupFinishScreen
+  },
+  DogInfo: {
+    screen: DogInfoScreen
+  },
+  OwnerInfo: {
+    screen: OwnerInfoScreen
+  }
+},
+{
+  headerMode: 'none',
+  navigationOptions: {
+    headerVisible: true,
+  },
+  initialRouteName: 'Explore',
+},
+);
+
+exploreScreen.navigationOptions = ({ navigation }) => {
+  let tabBarVisible = true;
+  if (navigation.state.index > 0) {
+    tabBarVisible = false;
+  }
+
+  return {
+    tabBarVisible,
+  };
+};
 
 const profileScreen = createStackNavigator({
   Profile: {
@@ -68,7 +143,7 @@ const profileScreen = createStackNavigator({
         flex: 1,
         fontSize: width * 0.061,
         color: 'black',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
       },
       headerStyle: {
         backgroundColor: '#FFF',
@@ -152,7 +227,7 @@ const Auth = createStackNavigator(
   {
     headerMode: 'none',
     navigationOptions: {
-      headerVisible: false,
+      headerVisible: true,
     },
     initialRouteName: 'Login',
   },
@@ -168,7 +243,8 @@ const Navigation = createSwitchNavigator(
     },
   },
   {
-    initialRouteName: 'SignedOut',
+    initialRouteName: 'SignedIn',
+    // initialRouteName: 'SignedOut',
   },
 );
 
