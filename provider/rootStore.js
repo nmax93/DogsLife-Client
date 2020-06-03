@@ -16,6 +16,12 @@ class rootStore {
   @observable userEmail;
   @observable userDogs = [];
   @observable selectedDog;
+  @observable isRegistered = false;
+
+  @action
+  setIsRegistered(value){
+    this.isRegistered = value;
+  }
 
   @action
   setSelectedDog(dogObject) {
