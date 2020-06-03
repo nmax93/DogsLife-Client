@@ -1,4 +1,5 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
+const width = Dimensions.get('window').width;
 
 const PRIMARY_COLOR = '#7444C0';
 const WHITE = '#FFFFFF';
@@ -28,7 +29,6 @@ export default StyleSheet.create({
     paddingTop: 25,
     paddingBottom: 5,
     color: DARK_GRAY,
-    fontSize: 15,
     textAlign: 'center',
   },
   descriptionProfileItem: {
@@ -41,6 +41,12 @@ export default StyleSheet.create({
     paddingVertical: 8,
     flexDirection: 'row',
     alignItems: 'center',
+    paddingLeft: 8
+  },
+  infoColumn: {
+    paddingVertical: 8,
+    justifyContent: 'center',
+    paddingLeft: 8
   },
   iconProfile: {
     fontFamily: ICON_FONT,
@@ -51,5 +57,21 @@ export default StyleSheet.create({
   infoContent: {
     color: GRAY,
     fontSize: 13,
+    marginLeft: 15,
+    // borderWidth: 1
   },
+  infoContentOwner: {
+    color: BLACK,
+    marginLeft: 15,
+    // borderWidth: 1
+  },
+  iconView: {
+        // borderWidth: 1,
+        width: width *0.08,
+        justifyContent: 'center',
+        alignItems: 'center'
+  },
+  iconStyle: {
+    padding: 5
+  }
 });

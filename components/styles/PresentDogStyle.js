@@ -4,11 +4,12 @@ const width = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     flexDirection: 'row',
     width: '100%',
-    aspectRatio: 4.5 / 1,
-    paddingLeft: '2.5%',
+    alignSelf: 'center',
+    paddingLeft: '4%',
+    justifyContent: 'center',
+    borderBottomWidth: 0.5,
   },
   avatar: {
     borderRadius: width * 7.5,
@@ -17,20 +18,24 @@ const styles = StyleSheet.create({
     margin: width * 0.025,
   },
   content: {
+    borderWidth: 1,
     width: width * 0.75,
-    height: '100%',
-    justifyContent: 'center',
+    justifyContent: 'center',    
   },
   section: {
-    width: '100%',
-    height: '25%',
+    alignItems: 'center', 
+    flexDirection: 'row',
+    width: width * 0.25,
   },
   name: {
-    color: '#333333',
-    fontSize: 0.05 * width,
-    paddingBottom: width * 0.05,
+    color: 'black',
+    fontWeight: 'bold',
+    fontSize: 0.03 * width,
+    borderWidth: 1
   },
   description: {
+    borderWidth: 1,
+
     color: 'darkgrey',
     fontSize: 0.04 * width,
   },

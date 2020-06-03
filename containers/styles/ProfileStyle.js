@@ -1,5 +1,5 @@
 import {StyleSheet, Dimensions} from 'react-native';
-import { LIGHT_BACKGROUND, DARK_GRAY, BLACK, WHITE, LIGHT_GREEN, LIGHT_BROWN, LIGHT_PURPLE } from './colors';
+import { LIGHT_BACKGROUND, DARK_GRAY, BLACK, WHITE, LIGHT_GREEN, LIGHT_BROWN, LIGHT_RED, CORGI_COLOR } from './colors';
 const PRIMARY_COLOR = '#7444C0';
 
 const ICON_FONT = 'tinderclone';
@@ -13,13 +13,19 @@ export default StyleSheet.create({
     flex: 1,
     width: '100%',
     height: DIMENSION_HEIGHT,
-    alignItems: 'center',
+    alignItems: 'flex-end',
+    justifyContent: 'center'
+
 
   },
-  containerProfile: {marginHorizontal: 0},
+  containerProfile: 
+  {
+    marginHorizontal: 0
+  }
+  ,
   photo: {
     width: DIMENSION_WIDTH,
-    height: 200,
+    height: DIMENSION_HEIGHT * 0.35,
   },
   topIconLeft: {
     fontFamily: ICON_FONT,
@@ -55,14 +61,14 @@ export default StyleSheet.create({
   roundedButton: {
     justifyContent: 'center',
     alignItems: 'center',
-    height: DIMENSION_HEIGHT*0.08,
-    width: (DIMENSION_WIDTH*0.8) /3,
-    borderRadius: 8,
+    height: DIMENSION_HEIGHT*0.09,
+    width: (DIMENSION_WIDTH*0.8) /2,
+    borderRadius: 12,
     elevation:2,
-    backgroundColor: LIGHT_GREEN,
+    backgroundColor: CORGI_COLOR,
   },
   walkButtonColor: {
-    backgroundColor: LIGHT_PURPLE,
+    backgroundColor: LIGHT_RED,
 
   },
   groomButtonColor: {
@@ -76,7 +82,7 @@ export default StyleSheet.create({
   },
 
   userInfoContainer: {
-    paddingTop: 15,
+    paddingVertical: 12,
     elevation:4,
     width: DIMENSION_WIDTH,
     alignItems: 'center',
@@ -107,23 +113,23 @@ export default StyleSheet.create({
   },
 
   dogListContainer: {
-    height: 50
+    height: DIMENSION_WIDTH * 0.127,
   },
   dogListImage: {
     borderRadius: 50,
     borderWidth: 2,
-    height: 40,
-    width: 40,
+    height: DIMENSION_WIDTH * 0.125,
+    width: DIMENSION_WIDTH * 0.125,
     marginRight: 5,
 
   },
   greenBorder: {
     borderRadius: 50,
     borderWidth: 2,
-    height: 40,
-    width: 40,
+    height: DIMENSION_WIDTH * 0.125,
+    width: DIMENSION_WIDTH * 0.125,
     marginRight: 5,
-    borderColor: LIGHT_BROWN
+    borderColor: '#e5c68b'
   },
   name: {
     paddingBottom: 5,
@@ -132,16 +138,16 @@ export default StyleSheet.create({
   addDogPlusButton:{
     borderRadius: 50,
     borderWidth: 1.5,
-    height: 40,
-    width: 40,
+    height: DIMENSION_WIDTH * 0.125,
+    width: DIMENSION_WIDTH * 0.125,
     marginRight: 5,
     borderColor: DARK_GRAY,
     justifyContent: 'center',
     alignItems: 'center',
   },
   plusSize: {
-    height: 30, 
-    width: 30
+    height: DIMENSION_WIDTH * 0.1,
+    width: DIMENSION_WIDTH * 0.1,
   }
 
 });

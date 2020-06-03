@@ -15,10 +15,11 @@ const styles = StyleSheet.create({
     opacity: 0.4,
   },
   box: {
+    
     width: '90%',
-    height: '90%',
+    height: '85%',
     left: '5%',
-    top: '5%',
+    top: '8%',
     position: 'absolute',
     backgroundColor: 'white',
     borderRadius: (width / 6) * 0.12,
@@ -38,28 +39,45 @@ const styles = StyleSheet.create({
     maxWidth: width * 0.08,
     maxHeight: width * 0.08,
   },
-  titleSection: {
+  nameAndRank: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
     width: '100%',
-    height: '10%',
-    justifyContent: 'center',
+    top: 15,
+    paddingRight: 20,
+
+
+    },
+  titleSection: {
+    borderBottomWidth: 2,
+    borderBottomColor: '#e0bab0',
     paddingLeft: '3%',
+    flexDirection: 'row',
+    alignItems: 'center',
   },
   textSection: {
     width: '100%',
     height: '3%',
     justifyContent: 'center',
     paddingLeft: '5%',
+    paddingVertical: '5%',
+
   },
   presentDogsSection: {
     width: '100%',
-    height: '60%',
+    top: 25,
+
   },
   title: {
-    fontSize: width * 0.06,
+    fontSize: width * 0.05,
     color: '#333333',
+    fontWeight: 'bold',
+    
+
   },
   text: {
-    fontSize: width * 0.045,
+    fontSize: width * 0.04,
     color: '#333333',
   },
 });
