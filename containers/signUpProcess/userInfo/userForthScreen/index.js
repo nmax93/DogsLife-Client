@@ -19,9 +19,6 @@ import {
 } from './components/hobbies';
 import {StoreUserForthScreen} from './store';
 
-// import DatePicker from './components/datePicker';
-// import {CheckBoxes} from './components/checkBoxes';
-const height = Dimensions.get('window').height;
 const width = Dimensions.get('window').width;
 
 @inject('rootStore')
@@ -31,10 +28,6 @@ export class UserForthScreen extends Component {
     super(props);
     this.storeUserForthScreen = new StoreUserForthScreen(props.rootStore);
   }
-  componentDidMount() {
-    console.log(this.props.navigation.state.params);
-  }
-
   render() {
     const {signupObject} = this.storeUserForthScreen;
     return (

@@ -19,19 +19,16 @@ export class StoreWriteReviewScreen {
   @action
   setCleanliness(value) {
     this.starCountCleanliness = value;
-    console.log("StoreWriteReviewScreen -> setCleanliness -> this.starCountCleanliness", this.starCountCleanliness)
   }
 
   @action
   setFacilities(value) {
     this.starCountFacilities = value;
-    console.log("StoreWriteReviewScreen -> setFacilities -> this.starCountFacilites", this.starCountFacilities)
   }
 
   @action
   setReviewText(text){
       this.text = text;
-      console.log("StoreWriteReviewScreen -> setReviewText -> this.text", this.text)
   }
 
   @action

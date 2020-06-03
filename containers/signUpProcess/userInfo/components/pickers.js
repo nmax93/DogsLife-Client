@@ -7,60 +7,6 @@ const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 
 
-export const Raise = props => {
-    return (
-        <View style={styles.outerView}>    
-        <RNPickerSelect
-        placeholder={{}}
-        items={[
-            { label: 'Partner', value: 1 },
-            { label: 'Family', value: 2 },
-            { label: 'By myself', value: 3 },
-        ]}
-        onValueChange={value => props.store.setRaiseWith(value)}
-        style={{
-          ...pickerSelectStyles,
-          iconContainer: {
-            top: 10,
-            right: 12,
-          },
-        }}
-        useNativeAndroidPickerStyle={false}
-        Icon={() => {
-            return <Icon name="down" size={20} color="black" />;
-          }}
-      />
-      </View>
-    );
-};
-
-export const DogsNumber = props => {
-    return (
-        <View style={styles.outerView}>    
-        <RNPickerSelect
-        placeholder={{}}
-        items={[
-            { label: '1', value: '1' },
-            { label: '2', value: '2' },
-            { label: 'more', value: '3' },
-        ]}
-        onValueChange={value => props.store.setDogNumber(value)}
-        style={{
-          ...pickerSelectStyles,
-          iconContainer: {
-            top: 10,
-            right: 12,
-          },
-        }}
-        useNativeAndroidPickerStyle={false}
-        Icon={() => {
-            return <Icon name="down" size={20} color="black" />;
-          }}
-      />
-      </View>
-    );
-};
-
 const morningPlaceholder = {
     label: 'Morning',
     value: -1,
@@ -252,44 +198,23 @@ export const BreedPicker = props => {
   );
 };
 
-export const EnergyLevel = () => {
-  return (
-      <View style={styles.outerView}>    
-      <RNPickerSelect
-      placeholder={{}}
-      items={[
-          { label: 'Low', value: 'Low' },
-          { label: 'Medium', value: 'Medium' },
-          { label: 'High', value: 'High' },
-      ]}
-      onValueChange={value => console.log(value)}
-      style={{
-        ...pickerSelectStyles,
-        iconContainer: {
-          top: 10,
-          right: 12,
-        },
-      }}
-      useNativeAndroidPickerStyle={false}
-      Icon={() => {
-          return <Icon name="down" size={20} color="black" />;
-        }}
-    />
-    </View>
-  );
+const EnergyPlaceholder = {
+  label: 'Select...',
+  value: '',
+  color: '#9EA0A4',
 };
 
-export const PlayTime = () => {
+export const EnergyLevel = props => {
   return (
       <View style={styles.outerView}>    
       <RNPickerSelect
-      placeholder={{}}
+      placeholder={EnergyPlaceholder}
       items={[
-          { label: '1-5 minutes', value: 'Low' },
-          { label: '5-10 minutes', value: 'Medium' },
-          { label: 'Over 10 minutes', value: 'High' },
+          { label: 'Low', value: 1 },
+          { label: 'Medium', value: 2 },
+          { label: 'High', value: 3 },
       ]}
-      onValueChange={value => console.log(value)}
+      onValueChange={value => props.store.setEnergyLevel(value)}
       style={{
         ...pickerSelectStyles,
         iconContainer: {

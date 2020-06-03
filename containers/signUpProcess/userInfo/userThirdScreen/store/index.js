@@ -30,7 +30,6 @@ export class StoreUserThirdScreen {
   @action
   buildSignupObject(navigation) {
     // when pressed next, build object and send
-
     this.signupObject.walk_routine = {
       morning: this.morning,
       midday: this.midday,
@@ -43,48 +42,27 @@ export class StoreUserThirdScreen {
   @action
   setIsCheckedMorning() {
     this.isCheckMorning = !this.isCheckMorning;
-    console.log(
-      'StoreUserThirdScreen -> setIsCheckedMorning -> this.isCheckMorning',
-      this.isCheckMorning,
-    );
     if (this.isCheckMorning == false) this.morning = {duration: -1, type: true};
   }
   @action
   setMorning(duration, type) {
-    console.log('StoreUserThirdScreen -> setMorning -> duration', duration);
     if (duration == -1) this.morning.type = !this.morning.type;
-    console.log(
-      'StoreUserThirdScreen -> setMorning -> this.morning.type',
-      this.morning.type,
-    );
     if (type == -1) this.morning.duration = duration;
   }
 
   @action
   setIsCheckedMidday() {
     this.isCheckMidday = !this.isCheckMidday;
-    console.log(
-      'StoreUserThirdScreen -> setIsCheckedMidday -> this.isCheckMidday',
-      this.isCheckMidday,
-    );
     if (this.isCheckMidday == false) this.midday = {duration: -1, type: true};
   }
   @action
   setMidday(duration, type) {
     if (duration == -1) this.midday.type = !this.midday.type;
     if (type == -1) this.midday.duration = duration;
-    console.log(
-      'StoreUserThirdScreen -> setMidday -> this.midday',
-      this.midday,
-    );
   }
   @action
   setIsCheckedAfternoon() {
     this.isCheckAfternoon = !this.isCheckAfternoon;
-    console.log(
-      'StoreUserThirdScreen -> setIsCheckedMidday -> this.isCheckAfternoon',
-      this.isCheckAfternoon,
-    );
     if (this.isCheckAfternoon == false)
       this.afternoon = {duration: -1, type: true};
   }
@@ -92,27 +70,15 @@ export class StoreUserThirdScreen {
   setAfternoon(duration, type) {
     if (duration == -1) this.afternoon.type = !this.afternoon.type;
     if (type == -1) this.afternoon.duration = duration;
-    console.log(
-      'StoreUserThirdScreen -> setMidday -> this.afternoon',
-      this.afternoon,
-    );
   }
   @action
   setIsCheckedEvening() {
     this.isCheckEvening = !this.isCheckEvening;
-    console.log(
-      'StoreUserThirdScreen -> setIsCheckedMidday -> this.isCheckEvening',
-      this.isCheckEvening,
-    );
     if (this.isCheckEvening == false) this.evening = {duration: -1, type: true};
   }
   @action
   setEvening(duration, type) {
     if (duration == -1) this.evening.type = !this.evening.type;
     if (type == -1) this.evening.duration = duration;
-    console.log(
-      'StoreUserThirdScreen -> setevening -> this.evening',
-      this.evening,
-    );
   }
 }

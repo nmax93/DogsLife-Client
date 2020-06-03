@@ -35,10 +35,6 @@ export class WriteReview extends Component {
     this.props.navigation.goBack();
   };
 
-  componentDidMount() {
-    console.log(this.props.navigation.state.params);
-  }
-
   render() {
     const {
       starCountFacilities,

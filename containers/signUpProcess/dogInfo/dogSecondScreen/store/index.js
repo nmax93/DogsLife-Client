@@ -37,9 +37,6 @@ export class StoreDogSecondScreen {
   @action
   setIsMix() {
     this.isMix = !this.isMix;
-    console.log(
-      this.isMix,
-    );
     this.signupDogObject.isMix = this.isMix;
   }
 
@@ -52,9 +49,6 @@ export class StoreDogSecondScreen {
   @action
   setIsSpayed() {
     this.isSpayed = !this.isSpayed;
-    console.log(
-      this.isSpayed,
-    );
     this.signupDogObject.isSpayed = this.isSpayed;
   }
 

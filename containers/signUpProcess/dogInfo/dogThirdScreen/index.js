@@ -20,10 +20,6 @@ export class DogThirdScreen extends Component {
     super(props);
     this.storeDogThirdScreen = new StoreDogThirdScreen(props.rootStore);
   }
-  componentDidMount() {
-    console.log(this.props.navigation.state.params); // just fot debugging
-  }
-
   noCollarButtonPressed = () => {
     sendSignupInfo({signupUserObject: this.props.navigation.state.params.signupUserObject , 
       signupDogObject: Object.assign(this.props.navigation.state.params.signupDogObject )});
@@ -39,7 +35,7 @@ export class DogThirdScreen extends Component {
         <VerticalSpaceP height={0.09} />
         <Question text={`What is ${name} energy level?`} />
         <VerticalSpaceP height={0.02} />
-        <EnergyLevel />
+        <EnergyLevel store={this.storeDogThirdScreen}/>
         <VerticalSpaceP height={0.05} />
         <Question text={`With whom ${name} doesn't get along with?`} />
         <VerticalSpaceP height={0.02} />

@@ -27,7 +27,6 @@ export class PlayerOrCalm extends PureComponent {
   }
   render() {
     const { player }  = this.props.storeDogThirdScreen
-    console.log("PlayerOrCalm -> render -> player", player)
     return (
       <View style={styles.container}>
         <CheckBox

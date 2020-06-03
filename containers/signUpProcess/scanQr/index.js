@@ -29,12 +29,7 @@ export class ScanCollarScreen extends Component {
       mac_id: '',
     };
   }
-  componentDidMount() {
-    console.log(this.props.navigation.state.params); // just fot debugging
-  }
-
   onSuccess = e => {
-    console.log('Mac-address', e.data);
     this.setState({isScanned: true, isDone: true, mac_id: e.data});
   };
 

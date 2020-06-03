@@ -1,6 +1,5 @@
 import { consts } from '../../../consts';
 export async function getProfileInfo(userId) {    
-      console.log("getProfileInfo -> userId", userId)
       const response = await fetch(`${consts.serverUrl}/getUserProfile`, {
         method: 'POST',
         headers: {
@@ -8,6 +7,5 @@ export async function getProfileInfo(userId) {
         },
         body: JSON.stringify({userId})
       });    
-      console.log("getProfileInfo -> response", response)
     return await response.json();
   }

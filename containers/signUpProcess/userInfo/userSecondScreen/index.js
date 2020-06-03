@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {inject, observer, Provider as MobxProvider} from 'mobx-react';
-import {View, Dimensions, Button} from 'react-native';
+import {View, Dimensions} from 'react-native';
 import styled from 'styled-components/native';
 import {MedBoldText} from '../../../styles/fonts';
 import {Header} from '../components/header';
@@ -35,7 +35,6 @@ export class UserSecondScreen extends Component {
     this._onFocusListener = this.props.navigation.addListener('didFocus', () => {
       this.handleUserAddress()
     })
-    console.log(this.props.navigation.state.params); // just fot debugging
   }
 
   handleUserAddress() {

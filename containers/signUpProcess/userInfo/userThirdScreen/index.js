@@ -20,9 +20,6 @@ export class UserThirdScreen extends Component {
     this.storeUserThirdScreen = new StoreUserThirdScreen(props.rootStore);
   }
 
-  componentDidMount(){
-    console.log(this.props.navigation.state.params)
-  }
   onPressNext = () => {
     this.storeUserThirdScreen.buildSignupObject(this.props.navigation);
   }

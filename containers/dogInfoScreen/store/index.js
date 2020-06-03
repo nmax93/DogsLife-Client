@@ -29,7 +29,7 @@ export class StoreDogInfoScreen {
       }
     } catch (e) {
       this.errorMsg = 'Network error'
-      console.log('catch', e);
+      console.log('getOwnersData catch', e);
     }
   });
 }

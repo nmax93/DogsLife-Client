@@ -1,45 +1,50 @@
 import React, { PureComponent } from 'react';
 import { inject } from 'mobx-react';
-import { Image, Text } from 'react-native';
-import { GooglePlacesAutocomplete, Place } from 'react-native-google-places-autocomplete';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import {getLangAndLat} from './routes'
  
 @inject('rootStore')
 class SelectLocationScreen extends PureComponent {
+  replaceAt(string, index, replace) {
+    return string.substring(0, index) + replace + string.substring(index + 1);
+  }
   render(){ 
 
     return (
       <GooglePlacesAutocomplete
       placeholder='Search'
       onPress={async (data, details = true) => {
-        // 'details' is provided when fetchDetails = true
-        console.log(data, details);
-        console.log("data.description" , data.description);
+        try{
         let { description } = data;
-        let addressWithSpaces = description.slice();
-        console.log("SelectLocationScreen -> render -> addressWithSpaces.length", addressWithSpaces.length)
-        for(let i=0; i<= addressWithSpaces.length; i++){
-          if(addressWithSpaces[i] == ' ') {
-            addressWithSpaces[i] = '+';
+        console.log("SelectLocationScreen -> render -> description", description)
+        let addressWithNoSpaces = '';
+        for(let i=0; i< description.length; i++){
+          if(description[i] == ' ') {
+            addressWithNoSpaces = addressWithNoSpaces + '+'
+          }
+          else {
+            addressWithNoSpaces = addressWithNoSpaces + description[i];
           }
         }
-        console.log("SelectLocationScreen -> render -> addressWithSpaces", addressWithSpaces)
-        // const addressToSend = addressWithSpaces.replaceAll(" ", "+");
-        // console.log("SelectLocationScreen -> render -> addressToSend", addressToSend)
-        const {code , extra } = await getLangAndLat(`Yitshak+Hachimi+Street,+Ashkelon,+Israel`)
-        console.log("SelectLocationScreen -> code , extra", code , extra)
-        if(code == 1) {
-          const { lat, lng } = extra;
-          this.props.navigation.navigate('UserSecond', { address:data.description, lat, lng })
+        console.log("SelectLocationScreen -> render -> addressWithNoSpaces", addressWithNoSpaces)
+
+          const {code , extra } = await getLangAndLat(addressWithNoSpaces)
+          if(code == 1) {
+            const { lat, lng } = extra;
+            console.log("SelectLocationScreen -> render -> lat, lng", lat, lng)
+            this.props.navigation.navigate('UserSecond', { address:data.description, lat, lng })
+          }
+          if(code == 0) console.log("error fetch address coords");
         }
-        if(code == 0) console.log("error fetch address coords");
+        catch (err) {
+          console.log(`SelectLocationScreen ${err}`);
+        }
         
       }}
       query={{
         key: 'AIzaSyDunTJh60gkRKtumHb1nTnKXGlCH4r9Dpk',
         language: 'en',
         components: 'country:il',
-        // components: 'country:israel',
       }}
       />
       );

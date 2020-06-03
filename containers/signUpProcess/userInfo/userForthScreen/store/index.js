@@ -1,5 +1,4 @@
-import {observable, action, flow} from 'mobx';
-import AsyncStorage from '@react-native-community/async-storage';
+import {observable, action} from 'mobx';
 
 export class StoreUserForthScreen {
     constructor(rootStore) {
@@ -19,11 +18,8 @@ export class StoreUserForthScreen {
 
       @action
       setHobbies(index, value){
-        console.log("StoreUserSecondScreen -> setHangouts -> index, value", index, value)
         this.hobbies[index] = value;
         this.signupObject.hobbies[index] = this.hobbies[index];
-        console.log("StoreUserSecondScreen -> setHangouts -> this.signupObject.hangouts[index]", this.signupObject.hobbies[index])
-
       }
 }
 
