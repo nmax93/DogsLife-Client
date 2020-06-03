@@ -6,17 +6,16 @@ const width = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   completeButton: {
-    width: width * 0.5,
+    width: width * 0.45,
     aspectRatio: 4 / 1,
-    backgroundColor: '#c8d9cb',
+    backgroundColor: 'white',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: width * 0.38,
     alignSelf: 'center',
-    top: width * 0.25,
   },
   text: {
-    fontSize: 0.05 * width,
+    fontSize: 0.045 * width,
     fontWeight: 'bold',
     color: '#333333',
   },

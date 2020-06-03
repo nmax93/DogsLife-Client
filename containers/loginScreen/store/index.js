@@ -53,6 +53,7 @@ export class StoreLoginScreen {
         }
       }
     } catch (e) {
+      this.errorMsg = 'Network error'
       console.log('catch', e);
     }
   });

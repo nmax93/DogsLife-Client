@@ -5,17 +5,17 @@ const width = Dimensions.get('window').width;
 
 const styles = StyleSheet.create({
   completeButton: {
-    width: width * 0.5,
+    width: width * 0.45,
     aspectRatio: 4 / 1,
-    backgroundColor: '#8e5b5e',
+    backgroundColor: 'black',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: width * 0.38,
-    top: width * 0.3,
+    margin: width * 0.030,
     alignSelf: 'center',
   },
   text: {
-    fontSize: 0.05 * width,
+    fontSize: 0.045 * width,
     fontWeight: 'bold',
     color: 'white',
   },
