@@ -197,11 +197,12 @@ export default class BleController extends Component {
               this.setState({peripherals});
             }
             console.log('Connected to ' + peripheral.id);
+            console.log("BleController -> test -> peripheral", peripheral)
 
             setTimeout(() => {
               BleManager.retrieveServices(peripheral.id).then(
                 (peripheralInfo) => {
-                  console.log(peripheralInfo);
+                  console.log("info ------------->>>>>",peripheralInfo);
                   var service = '19999998-00f2-537e-4f6c-d104768a1214';
                   var foundDogNameCharacteristic =
                     '19999998-00f2-537e-4f6c-d104768a1215';
