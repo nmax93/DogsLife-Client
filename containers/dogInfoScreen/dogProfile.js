@@ -68,7 +68,7 @@ class DogInfoScreen extends Component {
               <View style={styles.top}>
                 <TouchableOpacity>
                   <ArrowLeft
-                    style={{marginLeft: 20, marginTop: 20}}
+                    style={{top: 20, left: 20}}
                     navigation={this.props.navigation}
                   />
                 </TouchableOpacity>
