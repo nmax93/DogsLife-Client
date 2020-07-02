@@ -19,10 +19,7 @@ function getEnergy(energy) {
 
 function getLeftTime(firstScan, avgTime) {
   let nowDate = new Date();
-  console.log("getLeftTime -> nowDate", nowDate)
   const firstScanDate = new Date(firstScan);
-  console.log("getLeftTime -> firstScanDate", firstScanDate)
-  console.log("getLeftTime -> (nowDate - firstScanDate) / 1000 / 60", (nowDate - firstScanDate) / 1000 / 60)
   let minutesSinceFirstScan = (nowDate - firstScanDate) / 1000 / 60;
   if (minutesSinceFirstScan < 1 && minutesSinceFirstScan > 0) return 1;
   if (minutesSinceFirstScan < avgTime)
@@ -51,7 +48,6 @@ export const Gender = props => {
 };
 
 export const DogDetails = props => {
-  console.log("props.dogDetailsInGarden.first_scan", props.dogDetailsInGarden)
   return (
     <View style={styles.container}>
       <View style={styles.paramContainer}>
