@@ -20,6 +20,7 @@ class Explore extends Component {
   };
 
   async componentDidMount() {
+    await this.props.rootStore.getProfile();
     await fetch(`${consts.serverUrl}/getGardens`, {
       method: 'GET',
       headers: {'Content-type': 'application/json'},
@@ -55,15 +56,17 @@ class Explore extends Component {
   };
 
   render() {
-    const { isRegistered } = this.props.rootStore;
+    const {isRegistered} = this.props.rootStore;
     return (
       <View>
-        {!isRegistered ? <Button
-          style={{position: 'absolute', top: 0}}
-          color="#e5c68b"
-          onPress={this.signupPressed}
-          title="Please register - press here"
-        /> : null}
+        {isRegistered ? (
+          <Button
+            style={{position: 'absolute', top: 0}}
+            color="#e5c68b"
+            onPress={this.signupPressed}
+            title="Please register - press here"
+          />
+        ) : null}
         <MapView
           provider={PROVIDER_GOOGLE}
           style={{width: '100%', height: '100%'}}
