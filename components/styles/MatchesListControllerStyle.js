@@ -5,10 +5,10 @@ const width = Dimensions.get('window').width;
 const styles = StyleSheet.create({
   container: {
     width: width,
-    aspectRatio: 7 / 1,
+    aspectRatio: 8 / 1,
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: '2%',
+    backgroundColor: 'white'
   },
   text: {
     fontSize: width * 0.04,
@@ -17,12 +17,12 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   button: {
-    height: '100%',
     width: width / 3,
     justifyContent: 'center',
+    backgroundColor: 'white'
+
   },
   beigeLine: {
-    width: '96%',
     borderBottomWidth: 1,
     borderColor: '#e8cbba',
     position: 'absolute',
@@ -31,9 +31,9 @@ const styles = StyleSheet.create({
     marginRight: '2%',
   },
   brownLine: {
-    width: '31%',
+    width: '33%',
     borderBottomWidth: 2,
-    borderColor: '#8e725b',
+    borderColor: '#e5c68b',
     position: 'absolute',
     bottom: '6%',
   },

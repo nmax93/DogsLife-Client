@@ -5,16 +5,22 @@ const SCREEN_HEIGHT = Dimensions.get('window').height;
 
 export default StyleSheet.create({
   list: {
+    paddingTop: 10,
     minWidth: SCREEN_WIDTH,
     backgroundColor: 'ghostwhite',
     minHeight: SCREEN_HEIGHT - SCREEN_WIDTH / 7 - 105,
   },
+  
   matchesContainer: {
+    flex: 1,
     flexWrap: 'wrap',
     flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   bottomPadding: {
-    width: '100%',
-    height: 50,
+    width: SCREEN_WIDTH,
+    height: 50
+    
   },
 });
