@@ -9,8 +9,8 @@ export class StoreWriteReviewScreen {
   @observable starCountCleanliness = 3.5;
   @observable starCountFacilities = 3.5;
   @observable text;
-  @observable userId = 105;
-  @observable author = 'Hen';// this.rootStore.storeProfileScreen.name;
+  @observable userId = this.rootStore.userId;
+  @observable author = this.rootStore.userName;
 
   @observable errorMsg = null;
   @observable loading = false;
