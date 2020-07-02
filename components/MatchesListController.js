@@ -9,7 +9,7 @@ export default class MatchesListController extends Component {
     super(props);
     this.state = {
       curSelectedButton: 1,
-      button1color: '#8e725b',
+      button1color: 'black',
       button2color: 'darkgrey',
       button3color: 'darkgrey',
       brownLineX: new Animated.Value(width / 50),
@@ -24,14 +24,14 @@ export default class MatchesListController extends Component {
     if (num === 1) {
       Xvalue = width * 0.01;
       this.setState({
-        button1color: '#8e725b',
+        button1color: 'black',
         button2color: 'darkgrey',
         button3color: 'darkgrey',
       });
     } else if (num === 2) {
       Xvalue = width * 0.34;
       this.setState({
-        button2color: '#8e725b',
+        button2color: 'black',
         button1color: 'darkgrey',
         button3color: 'darkgrey',
       });
@@ -40,7 +40,7 @@ export default class MatchesListController extends Component {
       this.setState({
         button2color: 'darkgrey',
         button1color: 'darkgrey',
-        button3color: '#8e725b',
+        button3color: 'black',
       });
     }
     this.setState({curSelectedButton: num}, () => {
@@ -60,24 +60,23 @@ export default class MatchesListController extends Component {
           style={styles.button}
           onPress={() => this.onButtonClick(1)}>
           <Text style={[styles.text, {color: this.state.button1color}]}>
-            MATCHES
+          By character
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
           onPress={() => this.onButtonClick(2)}>
           <Text style={[styles.text, {color: this.state.button2color}]}>
-            AROUND YOU
+            Nearby
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.button}
           onPress={() => this.onButtonClick(3)}>
           <Text style={[styles.text, {color: this.state.button3color}]}>
-            DOG FRIENDS
+            By Collar
           </Text>
         </TouchableOpacity>
-        <View style={styles.beigeLine} />
         <Animated.View
           style={[styles.brownLine, {left: this.state.brownLineX}]}
         />
