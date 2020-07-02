@@ -6,12 +6,14 @@ const DARK_GRAY = '#333333';
 
 export default StyleSheet.create({
   containerCardItem: {
-    width: SCREEN_WIDTH * 0.46,
+    width: SCREEN_WIDTH * 0.44,
     height: SCREEN_WIDTH * 0.4,
     backgroundColor: WHITE,
     borderRadius: 8,
     alignItems: 'center',
     margin: SCREEN_WIDTH * 0.02,
+    justifyContent: 'center',
+    elevation: 4
   },
   image: {
     width: SCREEN_WIDTH * 0.16,
@@ -19,7 +21,6 @@ export default StyleSheet.create({
     borderRadius: SCREEN_WIDTH * 0.08,
   },
   textContainer: {
-    width: '100%',
     height: '20%',
     justifyContent: 'center',
     alignItems: 'center',

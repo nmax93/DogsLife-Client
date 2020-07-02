@@ -9,6 +9,7 @@ import {MedBoldText} from '../../containers/styles/fonts';
 class PresentDog extends Component {
   findDogDetailsInGarden = () => {
     const {visitedDogs} = this.props;
+    console.log("PresentDog -> findDogDetailsInGarden -> visitedDogs", visitedDogs)
     const dogFound = visitedDogs.find(dog => dog.dog_id == this.props.data.dogInfo.id);
     return dogFound;
   };
@@ -18,7 +19,9 @@ class PresentDog extends Component {
     const thisGarden = this.props.data.dogInfo.visited_gardens.find(
       garden => garden.garden_id == gardenId,
     );
-    if (thisGarden.avg_play_time) return thisGarden.avg_play_time;
+    if (thisGarden.avg_play_time > 0) {
+      return thisGarden.avg_play_time;
+    }
     else return null;
   };
 
