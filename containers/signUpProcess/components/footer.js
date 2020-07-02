@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
 export const Footer = props => {
   return (
     <View style={styles.container}>
-      <PrograssBar number={props.screenNumber} />
+      {props.removeBar ? null : <PrograssBar number={props.screenNumber} />}
         <WhiteButton
           onPressNoCollar={props.onPressNoCollar}
           noCollarNeed={props.noCollarNeed}
