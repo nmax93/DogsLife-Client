@@ -1,32 +1,33 @@
 import React from 'react';
-import {Image} from 'react-native';
+import {Image, TouchableOpacity, Dimensions, Alert} from 'react-native';
 import {
   createBottomTabNavigator,
   createSwitchNavigator,
   createStackNavigator,
   createAppContainer,
 } from 'react-navigation';
-import {Dimensions} from 'react-native';
+import createAnimatedSwitchNavigator from 'react-navigation-animated-switch';
 import ExploreScreen from '../containers/exploreScreen/Explore';
-import MatchesScreen from '../containers/Matches';
+import MatchesScreen from '../containers/matchesScreen/Matches';
 import ProfileScreen from '../containers/profileScreen/Profile';
 import DogInfoScreen from '../containers/dogInfoScreen/dogProfile';
 import OwnerInfoScreen from '../containers/ownerInfoScreen';
 
 import {LoginScreen} from '../containers/loginScreen/LoginScreen';
 import {RegisterScreen} from '../containers/registerScreen/RegisterScreen';
-import{SignupEntry} from '../containers/signUpProcess/entryScreen/entryScreen';
-import{UserFirstScreen} from '../containers/signUpProcess/userInfo/userFirstScreen';
-import{UserSecondScreen} from '../containers/signUpProcess/userInfo/userSecondScreen';
-import{UserThirdScreen} from '../containers/signUpProcess/userInfo/userThirdScreen';
-import{UserForthScreen} from '../containers/signUpProcess/userInfo/userForthScreen';
-import{DogFirstScreen} from '../containers/signUpProcess/dogInfo/dogFirstScreen';
-import{DogSecondScreen} from '../containers/signUpProcess/dogInfo/dogSecondScreen';
-import{DogThirdScreen} from '../containers/signUpProcess/dogInfo/dogThirdScreen';
-import{ScanCollarScreen} from '../containers/signUpProcess/scanQr'
-import { WriteReview } from '../containers/exploreScreen/components/writeReview/writeReview'
-import SelectLocationScreen from '../containers/signUpProcess/userInfo/addressPickerScreen'
-import {SignupFinishScreen} from '../containers/signUpProcess/finishScreen'
+import {SignupEntry} from '../containers/signUpProcess/entryScreen/entryScreen';
+import {UserFirstScreen} from '../containers/signUpProcess/userInfo/userFirstScreen';
+import {UserSecondScreen} from '../containers/signUpProcess/userInfo/userSecondScreen';
+import {UserThirdScreen} from '../containers/signUpProcess/userInfo/userThirdScreen';
+import {UserForthScreen} from '../containers/signUpProcess/userInfo/userForthScreen';
+import {DogFirstScreen} from '../containers/signUpProcess/dogInfo/dogFirstScreen';
+import {DogSecondScreen} from '../containers/signUpProcess/dogInfo/dogSecondScreen';
+import {DogThirdScreen} from '../containers/signUpProcess/dogInfo/dogThirdScreen';
+import {ScanCollarScreen} from '../containers/signUpProcess/scanQr';
+import {WriteReview} from '../containers/exploreScreen/components/writeReview/writeReview';
+import SelectLocationScreen from '../containers/signUpProcess/userInfo/addressPickerScreen';
+import {SignupFinishScreen} from '../containers/signUpProcess/finishScreen';
+import {AuthLoadingScreen} from '../containers/authLoadingScreen';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
@@ -35,7 +36,7 @@ const matchScreen = createStackNavigator({
   Matches: {
     screen: MatchesScreen,
     navigationOptions: {
-      headerTitle: 'Matches',
+      headerTitle: 'Matches for you',
       headerLeft: null,
       headerTitleStyle: {
         flex: 1,
@@ -44,7 +45,7 @@ const matchScreen = createStackNavigator({
         fontWeight: 'bold',
       },
       headerStyle: {
-        backgroundColor: '#FFF',
+        backgroundColor: '#e5c68b',
         height: height * 0.08,
         elevation: 1,
       },
@@ -52,77 +53,64 @@ const matchScreen = createStackNavigator({
   },
 });
 
-const exploreScreen = createStackNavigator({
-  Explore: {
-    screen: ExploreScreen,
-    // navigationOptions: {
-    //   // headerTitle: 'Explore',
-    //   headerTitleStyle: {
-    //     flex: 1,
-    //     fontSize: width * 0.061,
-    //     color: 'black',
-    //     fontWeight: 'bold',
-    //   },
-    //   headerStyle: {
-    //     backgroundColor: '#FFF',
-    //     height: height * 0.08,
-    //     elevation: 1,
-    //   },
-    // },
+const exploreScreen = createStackNavigator(
+  {
+    Explore: {
+      screen: ExploreScreen,
+    },
+    Review: {
+      screen: WriteReview,
+    },
+    Signup: {
+      screen: SignupEntry,
+    },
+    UserFirst: {
+      screen: UserFirstScreen,
+    },
+    UserSecond: {
+      screen: UserSecondScreen,
+    },
+    UserThird: {
+      screen: UserThirdScreen,
+    },
+    UserForth: {
+      screen: UserForthScreen,
+    },
+    DogFirst: {
+      screen: DogFirstScreen,
+    },
+    DogSecond: {
+      screen: DogSecondScreen,
+    },
+    DogThird: {
+      screen: DogThirdScreen,
+    },
+    ScanCollar: {
+      screen: ScanCollarScreen,
+    },
+    SelectLocation: {
+      screen: SelectLocationScreen,
+    },
+    SignupFinish: {
+      screen: SignupFinishScreen,
+    },
+    DogInfo: {
+      screen: DogInfoScreen,
+    },
+    OwnerInfo: {
+      screen: OwnerInfoScreen,
+    },
   },
-  Review: {
-    screen: WriteReview
+  {
+    headerMode: 'none',
+    navigationOptions: {
+      headerVisible: true,
+    },
+    initialRouteName: 'Explore',
   },
-  Signup: {
-    screen: SignupEntry,
-  },
-  UserFirst: {
-    screen: UserFirstScreen,
-  },
-  UserSecond: {
-    screen: UserSecondScreen
-  },
-  UserThird: {
-    screen: UserThirdScreen
-  },
-  UserForth :{
-    screen: UserForthScreen
-  },
-  DogFirst: {
-    screen:DogFirstScreen
-  },
-  DogSecond:{
-    screen:DogSecondScreen
-  },
-  DogThird: {
-    screen: DogThirdScreen
-  },
-  ScanCollar: {
-    screen: ScanCollarScreen
-  },
-  SelectLocation: {
-    screen: SelectLocationScreen
-  },
-  SignupFinish: {
-    screen: SignupFinishScreen
-  },
-  DogInfo: {
-    screen: DogInfoScreen
-  },
-  OwnerInfo: {
-    screen: OwnerInfoScreen
-  }
-},
-{
-  headerMode: 'none',
-  navigationOptions: {
-    headerVisible: true,
-  },
-  initialRouteName: 'Explore',
-},
 );
 
-exploreScreen.navigationOptions = ({ navigation }) => {
+exploreScreen.navigationOptions = ({navigation}) => {
   let tabBarVisible = true;
   if (navigation.state.index > 0) {
     tabBarVisible = false;
@@ -154,7 +142,7 @@ const profileScreen = createStackNavigator({
   },
 });
 
-const App = createBottomTabNavigator(
+const AppStack = createBottomTabNavigator(
   {
     Match: {
       screen: matchScreen,
@@ -203,7 +191,7 @@ const App = createBottomTabNavigator(
     },
   },
   {
-    initialRouteName: 'Match',
+    initialRouteName: 'Explore',
     tabBarOptions: {
       showLabel: false,
       style: {
@@ -215,7 +203,7 @@ const App = createBottomTabNavigator(
   },
 );
 
-const Auth = createStackNavigator(
+const AuthStack = createStackNavigator(
   {
     Login: {
       screen: LoginScreen,
@@ -233,19 +221,17 @@ const Auth = createStackNavigator(
   },
 );
 
-const Navigation = createSwitchNavigator(
-  {
-    SignedIn: {
-      screen: App,
+const App = createAppContainer(
+  createAnimatedSwitchNavigator(
+    {
+      AuthLoading: AuthLoadingScreen,
+      AppScreens: AppStack,
+      Auth: AuthStack,
     },
-    SignedOut: {
-      screen: Auth,
+    {
+      initialRouteName: 'AuthLoading',
     },
-  },
-  {
-    initialRouteName: 'SignedIn',
-    // initialRouteName: 'SignedOut',
-  },
+  ),
 );
 
-export default createAppContainer(Navigation);
+export default App;
