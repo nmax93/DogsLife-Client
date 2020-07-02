@@ -6,6 +6,37 @@ import Icon from 'react-native-vector-icons/AntDesign'
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 
+const numOfDogsPlaceholder = {
+  label: '0',
+  value: 0,
+  color: '#9EA0A4',
+};
+
+export const NumOfDogsPicker = props => {
+  return (
+      <View style={styles.numOfDogsOuterView}>    
+      <RNPickerSelect
+      placeholder={numOfDogsPlaceholder}
+      items={[
+          { label: '1', value: 1 },
+          { label: '2', value: 2 },
+      ]}
+      onValueChange={value => props.store.setNumOfDogs(value)}
+      style={{
+        ...numOfDogsPickerSelectStyles,
+        iconContainer: {
+          top: 10,
+          right: 7,
+        },
+      }}
+      useNativeAndroidPickerStyle={false}
+      Icon={() => {
+          return <Icon name="down" size={18} color="black" />;
+        }}
+    />
+    </View>
+  );
+};
 
 const morningPlaceholder = {
     label: 'Morning',
@@ -250,6 +281,12 @@ const styles = StyleSheet.create({
       backgroundColor: '#ffffff',       
       borderRadius: 10 
     },
+    numOfDogsOuterView: {
+      height: height * 0.056,
+      width: width * 0.19,
+      backgroundColor: '#ffffff',       
+      borderRadius: 10 
+    },
     breedView:{
         height: height * 0.056,
         width: width * 0.5,
@@ -276,6 +313,20 @@ const styles = StyleSheet.create({
     inputAndroid: {
         height: height * 0.056,
         width: width * 0.88 /3.1,
+        fontSize: width * 0.04,
+        alignSelf: 'center',
+        borderRadius: 10,
+        paddingLeft: 15,
+        fontWeight: 'bold',
+        color:'black',
+      paddingRight: 30,
+    },
+  });
+
+  const numOfDogsPickerSelectStyles = StyleSheet.create({
+    inputAndroid: {
+        height: height * 0.056,
+        width: width * 0.2,
         fontSize: width * 0.04,
         alignSelf: 'center',
         borderRadius: 10,

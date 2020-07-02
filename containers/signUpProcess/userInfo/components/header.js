@@ -16,7 +16,6 @@ const styles = StyleSheet.create({
   },
   text: {
     color: 'black',
-    marginLeft: width* 0.05
   },
 });
 

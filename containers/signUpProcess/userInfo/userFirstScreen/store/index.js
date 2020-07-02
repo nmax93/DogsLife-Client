@@ -8,6 +8,7 @@ export class StoreUserFirstScreen {
       @observable name;
       @observable avatar = null;
       @observable gender = true;
+      @observable numOfDogs = null;
       @observable errorMsg = null;
       @observable loading = false;
 
@@ -15,11 +16,17 @@ export class StoreUserFirstScreen {
                                     userGender: true,
                                     userName: null,
                                     userAvatar: null,
-                                    userId: 105, // from rootStore
+                                    userId: this.rootStore.userId, // from rootStore
                                     // userId: this.rootStore.userId
-                                    deciveMacId: null
+                                    deciveMacId: null,
                                 }
     
+      @action
+      setNumOfDogs(num){
+        if(num == 2) this.rootStore.setTwoDogs(true);
+        if(num == 3) this.rootStore.setTwoDogs(false);
+        this.numOfDogs = num;
+      }                         
       @action
       setUserMacId(mac){
         this.signupUserObject.deciveMacId = mac;
