@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     position: 'absolute',
+ 
   },
   darkBackground: {
     width: '100%',
@@ -15,20 +16,19 @@ const styles = StyleSheet.create({
     opacity: 0.4,
   },
   box: {
-    
     width: '90%',
-    height: '85%',
+    height: '84%',
     left: '5%',
     top: '8%',
     position: 'absolute',
     backgroundColor: 'white',
-    borderRadius: (width / 6) * 0.12,
   },
   gardenImage: {
+    borderBottomRightRadius: 20,
+    borderBottomLeftRadius: 20,
+
     width: '100%',
     height: '30%',
-    borderTopLeftRadius: (width / 6) * 0.12,
-    borderTopRightRadius: (width / 6) * 0.12,
   },
   closeButton: {
     position: 'absolute',
@@ -44,14 +44,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-between',
     width: '100%',
-    top: 15,
+    top: 8,
     paddingRight: 20,
+    paddingBottom: 8
 
 
     },
   titleSection: {
     borderBottomWidth: 2,
-    borderBottomColor: '#e0bab0',
+    borderBottomColor: '#e5c68b',
     paddingLeft: '3%',
     flexDirection: 'row',
     alignItems: 'center',
@@ -66,8 +67,14 @@ const styles = StyleSheet.create({
   },
   presentDogsSection: {
     width: '100%',
-    top: 25,
-
+    top: 11,
+    backgroundColor: 'ghostwhite',
+    paddingTop: 10
+  },
+  bottomPadding: {
+    width: width,
+    height: 10
+    
   },
   title: {
     fontSize: width * 0.05,
