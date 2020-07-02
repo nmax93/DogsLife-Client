@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  View,
   Image,
   StyleSheet,
   Dimensions,
@@ -11,24 +10,31 @@ const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
 
 export const ArrowLeft = props => (
-  <TouchableOpacity onPress={() => props.navigation.goBack()}>
-    <View style={[styles.container, props.style]}>
+  <TouchableOpacity style={[props.register? styles.touchableOpacityRegisterArea : styles.touchableOpacityArea , props.style]} onPress={() => props.navigation.goBack()}>
       <Image
-        source={props.white ? require('../images/arrow_right_white.png') : require('../images/left.png')}
+        source={props.white ? require('../images/arrow_right_white.png') : require('../images/left_chevron.png')}
         style={props.white ? styles.bigArrow : styles.smallArrow}
       />
-    </View>
   </TouchableOpacity>
 );
 
 const styles = StyleSheet.create({
+  touchableOpacityArea: {
+    width: width * 0.12,
+  },
+  touchableOpacityRegisterArea: {
+    height: width * 0.12,
+    width: width * 0.12,
+    marginLeft: 30,
+    marginTop: 15
+  },
   container: {
     display: 'flex',
     paddingVertical: 10,
   },
   smallArrow: {
-    height: height * 0.06,
-    width: width * 0.06,
+    height: height * 0.075,
+    width: width * 0.045,
   },
   bigArrow: {
     height: height * 0.06,
