@@ -14,6 +14,7 @@ export class TextInputWithF extends PureComponent {
         style={[styles.textInput, this.props.s]}
         onChangeText={text => this.props.onChange(text)}
         placeholder={this.props.placeholder}
+        value={this.props.value}
       />
     );
   }
