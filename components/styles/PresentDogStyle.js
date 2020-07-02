@@ -1,15 +1,20 @@
 import {StyleSheet, Dimensions} from 'react-native';
 
 const width = Dimensions.get('window').width;
+const height = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    width: '100%',
+    width: '92%',
+    height: height * 0.12,
     alignSelf: 'center',
     paddingLeft: '4%',
     justifyContent: 'center',
-    borderBottomWidth: 0.5,
+    backgroundColor: 'white',
+    marginTop: 5,
+    elevation: 1,
+    borderRadius: 10,
   },
   avatar: {
     borderRadius: width * 7.5,
