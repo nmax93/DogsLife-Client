@@ -19,7 +19,6 @@ export default class CardItem extends Component {
     return (
       <TouchableOpacity
         style={styles2.container}
-        // onPress={this.navigateToDogProfile}
         >
         <View style={styles2.bothNamesSection}>
           <View style={styles2.nameAndAvatar}>
