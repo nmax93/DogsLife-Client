@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { inject } from 'mobx-react';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import {getLangAndLat} from './routes'
+import {consts } from '../../../../consts'
  
 @inject('rootStore')
 class SelectLocationScreen extends PureComponent {
@@ -16,7 +17,6 @@ class SelectLocationScreen extends PureComponent {
       onPress={async (data, details = true) => {
         try{
         let { description } = data;
-        console.log("SelectLocationScreen -> render -> description", description)
         let addressWithNoSpaces = '';
         for(let i=0; i< description.length; i++){
           if(description[i] == ' ') {
@@ -26,12 +26,9 @@ class SelectLocationScreen extends PureComponent {
             addressWithNoSpaces = addressWithNoSpaces + description[i];
           }
         }
-        console.log("SelectLocationScreen -> render -> addressWithNoSpaces", addressWithNoSpaces)
-
           const {code , extra } = await getLangAndLat(addressWithNoSpaces)
           if(code == 1) {
             const { lat, lng } = extra;
-            console.log("SelectLocationScreen -> render -> lat, lng", lat, lng)
             this.props.navigation.navigate('UserSecond', { address:data.description, lat, lng })
           }
           if(code == 0) console.log("error fetch address coords");
@@ -42,7 +39,7 @@ class SelectLocationScreen extends PureComponent {
         
       }}
       query={{
-        key: 'AIzaSyDunTJh60gkRKtumHb1nTnKXGlCH4r9Dpk',
+        key: consts.googleKey,
         language: 'en',
         components: 'country:il',
       }}

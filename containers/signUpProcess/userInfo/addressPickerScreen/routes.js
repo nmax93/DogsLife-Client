@@ -1,7 +1,8 @@
+import {consts } from '../../../../consts'
 export async function getLangAndLat(address) {
   let location = {}    
     try{
-      const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=Yitshak+Hachimi+Street,+Ashkelon,+Israel&key=AIzaSyDunTJh60gkRKtumHb1nTnKXGlCH4r9Dpk`, {
+      const response = await fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=${consts.googleKey}`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
@@ -13,7 +14,7 @@ export async function getLangAndLat(address) {
     }
     catch (err) {
       console.log("cant find location", err);
-      return { code: 0, err: err } // cant find location
+      return { code: 0, err: err }
     }            
     return { code: 1, extra: location };
   }
