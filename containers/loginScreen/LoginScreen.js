@@ -7,8 +7,8 @@ import {SignInButton} from './components/SignInButton';
 import {JoinButton} from './components/JoinButton';
 import {StoreLoginScreen} from './store';
 import {ErrorMsg} from '../../components/errorMsg';
-import {Loading} from '../../components/Loading';
 import {VerticalSpaceP} from '../../components/verticalSpace';
+import {LoadingLogo} from './components/loadingLogo';
 
 @inject('rootStore')
 @observer
@@ -27,14 +27,14 @@ export class LoginScreen extends Component {
   };
 
   render() {
+    const {loading} = this.props.rootStore;
     return (
       <MobxProvider storeLoginScreen={this.storeLoginScreen}>
+        {!loading ? (
           <ImageBackground
             source={require('../../images/background.png')}
-            style={{flex:1}}>
-            <VerticalSpaceP height={0.16} />
+            style={{flex: 1}}>
             <Logo />
-            <VerticalSpaceP height={0.1} />
             <TextInputWithF
               placeholder={'E-mail'}
               onChange={this.onChangeEmailText}
@@ -49,8 +49,10 @@ export class LoginScreen extends Component {
             <ErrorMsg height={50} store={this.storeLoginScreen} />
             <SignInButton navigation={this.props.navigation} />
             <JoinButton navigation={this.props.navigation} />
-            <Loading store={this.storeLoginScreen} />
           </ImageBackground>
+        ) : (
+          <LoadingLogo />
+        )}
       </MobxProvider>
     );
   }

@@ -40,10 +40,11 @@ export class StoreLoginScreen {
           } else if (response.err) {
             this.errorMsg = response.err;
           } else {
+            navigation.navigate('AppScreens');
             this.loading = false;
-            navigation.navigate('SignedIn');
             const userInfo = {
-              username: this.email,
+              email: this.email,
+              userId: response.profile.id,
               password: this.password,
               token: response.token,
             };
