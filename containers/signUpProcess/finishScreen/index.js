@@ -6,7 +6,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import { Title } from '../entryScreen/components/title';
 import {MedQuestionTextWide} from '../../../containers/styles/fonts'
 import { VerticalSpaceP } from '../../../components/verticalSpace';
-import { Footer } from '../scanQr/components/footer';
+import { Footer } from '../components/footer';
 
 @inject('rootStore')
 @observer
@@ -29,7 +29,7 @@ export class SignupFinishScreen extends Component {
             <MedQuestionTextWide>You have completed the registration process, enjoy the app.</MedQuestionTextWide>
             </View>
             <VerticalSpaceP height={0.03} />
-            <Footer text={'Great !'} onPress={this.finishRegistration}/>
+            <Footer removeBar text={'Great !'} onPress={this.finishRegistration}/>
         </BaseView>
     );
   }
