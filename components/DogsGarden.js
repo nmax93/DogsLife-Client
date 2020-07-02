@@ -6,7 +6,7 @@ import {
   Text,
   Image,
   ScrollView,
-  TouchableOpacity
+  TouchableOpacity,
 } from 'react-native';
 import styles from './styles/DogsGardenStyle';
 import PresentDog from './presentDog/PresentDog';
@@ -27,8 +27,8 @@ export default class DogsGarden extends Component {
     };
   }
 
-  getPresentDogs = () => {
-    fetch('http://localhost:5050/getPresentDogsInGarden', {
+  getPresentDogs = async () => {
+    await fetch('http://localhost:5050/getPresentDogsInGarden', {
       method: 'POST',
       headers: {'Content-type': 'application/json'},
       body: JSON.stringify({gardenId: this.props.data.id}),
@@ -113,7 +113,6 @@ export default class DogsGarden extends Component {
                     flexDirection: 'row',
                     alignItems: 'center',
                     marginLeft: 25,
-                  
                   }}
                   onPress={() =>
                     this.setState({
@@ -128,7 +127,7 @@ export default class DogsGarden extends Component {
                 style={{
                   paddingVertical: 5,
                   paddingHorizontal: 5,
-                  backgroundColor: '#e0bab0',
+                  backgroundColor: '#e5c68b',
                   elevation: 2,
                   borderRadius: 10,
                 }}
@@ -147,7 +146,7 @@ export default class DogsGarden extends Component {
                   flexDirection: 'row',
                   alignSelf: 'center',
                   alignItems: 'center',
-                  paddingTop: 20
+                  paddingTop: 20,
                 }}>
                 <Text>Facilities: {facilities_score} </Text>
                 <Icon name="star" size={15} color="black" />
@@ -155,18 +154,25 @@ export default class DogsGarden extends Component {
                 <Icon name="star" size={15} color="black" />
               </View>
             ) : null}
-            <ScrollView style={styles.presentDogsSection}>
-              {!this.state.fetchedData && (
-                <View style={{alignItems: 'center'}}>
-                  <VerticalSpaceP height={0.11} />
-                  <Image
-                    source={require('../images/gifi.gif')}
-                    style={{width: 265, height: 150, alignSelf: 'center'}}
-                  />
-                </View>
-              )}
-              {this.state.fetchedData && this.mapPresentDogs()}
-            </ScrollView>
+            {!this.state.fetchedData ? (
+              <View
+                style={{
+                  flex: 1,
+                  alignItems: 'center',
+                  backgroundColor: 'white',
+                }}>
+                <VerticalSpaceP height={0.14} />
+                <Image
+                  source={require('../images/gifi.gif')}
+                  style={{width: 265, height: 150, alignSelf: 'center'}}
+                />
+              </View>
+            ) : (
+              <ScrollView style={styles.presentDogsSection}>
+                {this.state.fetchedData && this.mapPresentDogs()}
+                <View style={styles.bottomPadding} />
+              </ScrollView>
+            )}
           </View>
         </Animated.View>
       )
