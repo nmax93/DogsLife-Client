@@ -9,7 +9,7 @@ const height = Dimensions.get('window').height;
 const styles = StyleSheet.create({
   container: {
     top: height * 0.015,
-    width: width * 0.9,
+    width: width * 0.95,
     alignItems: 'center',
     justifyContent: 'space-between',
     flexDirection: 'row',
@@ -42,7 +42,7 @@ export class ParkPreference extends PureComponent {
           onPress={() => this.props.storeDogThirdScreen.setParkPreference(1)}
         />
         <CheckBox
-          title="Unoccupied"
+          title="Not crowded"
           uncheckedColor={'black'}
           checkedColor={'white'}
           checkedIcon="dot-circle-o"

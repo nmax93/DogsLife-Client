@@ -18,6 +18,20 @@ export class DogFirstScreen extends Component {
     super(props);
     this.storeDogFirstScreen = new StoreDogFirstScreen(props.rootStore);
   }
+  componentDidMount(){
+    this._onFocusListener = this.props.navigation.addListener('didFocus', () => {
+      console.log(this.props.navigation.state.params);
+      const { nextDog } = this.props.navigation.state.params;
+      console.log("DogFirstScreen -> componentDidMount -> nextDog", nextDog)
+        if(nextDog){
+          this.storeDogFirstScreen.resetObservables();
+          this.props.rootStore.setOnSecondDog(true);
+        }
+        const {twoDogs, onSecondDog} = this.props.rootStore;
+        console.log("DogFirstScreen -> componentDidMount -> twoDogs, onSecondDog", twoDogs, onSecondDog)
+    })
+  }
+
   onChangeNameText = text => {
     this.storeDogFirstScreen.setName(text);
   };
@@ -26,11 +40,13 @@ export class DogFirstScreen extends Component {
   };
 
   render() {
-    const {name, signupObject} = this.storeDogFirstScreen;
+    const {name, signupObject, description, avatar} = this.storeDogFirstScreen;
+    const {onSecondDog} = this.props.rootStore;
+    const text = name ? name : 'your dog'
     return (
       <MobxProvider storeDogFirstScreen={this.storeDogFirstScreen}>
         <BaseView>
-          <Header title navigation={this.props.navigation} />
+          <Header onSecondDog={onSecondDog} title navigation={this.props.navigation} />
           <VerticalSpaceP height={0.05} />
           <MedQuestionTextWide>What is your dog name?</MedQuestionTextWide>
           <VerticalSpaceP height={0.05} />
@@ -39,13 +55,15 @@ export class DogFirstScreen extends Component {
           <TextInputWithF
             placeholder={'Bambi'}
             onChange={this.onChangeNameText}
+            value={name}
           />
           <VerticalSpaceP height={0.01} />
-          <Question text={`Tell us about ${name}.`} />
+          <Question text={`Tell us about ${text}.`} />
           <TextInputWithF
             bigger={2}
             placeholder={'He is bouncy, fast and cute.'}
             onChange={this.onChangeDescriptionText}
+            value={description}
           />
           <Footer
             screenNumber={5}

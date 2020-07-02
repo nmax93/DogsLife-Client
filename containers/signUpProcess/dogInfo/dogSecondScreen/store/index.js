@@ -26,6 +26,27 @@ export class StoreDogSecondScreen {
   };
 
   @action
+  resetObservables() {
+    console.log('reset second dog  called');
+    this.breed = 1;
+    this.isMix = false;
+    this.gender = 2;
+    this.isSpayed = false;
+    this.birthdate = null;
+    this.isDatePickerVisible = false
+    this.weight = 0;
+
+    this.signupObject = {
+    dogGender: 2,
+    breed: '',
+    isMix: false,
+    isSpayed: false,
+    dogBirthdate: null,
+    weight: 0
+    }
+  }
+
+  @action
   setBreed(breed) {
     const { breedSize , breedExercise } = findBreed(breed);
     this.breed = breed;

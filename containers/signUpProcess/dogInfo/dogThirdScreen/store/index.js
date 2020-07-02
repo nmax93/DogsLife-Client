@@ -26,7 +26,6 @@ export class StoreDogThirdScreen {
 
   @action
   resetObservables() {
-    console.log('reset third dog  called');
     this.energyLevel = 1;
     this.getAlongGender = 3;
     this.getAlongSpayed = 3;

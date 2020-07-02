@@ -33,13 +33,13 @@ const styles = StyleSheet.create({
 export const WhiteButton = props => {
   return (
     <View style={[styles.container, props.containerStyle]}>
-      <Button
+      {!props.isShowDone ? <Button
         onPress={props.onPress ? props.onPress : () => props.navigation.navigate(props.next, props.params)}
         disabledContainerStyle={{backgroundColor: 'grey'}}
         containerStyle={[styles.button, styles.okButton, props.style]}
         style={styles.okButtonText}>
         {props.text? props.text : 'Next'}
-      </Button>
+      </Button> : null}
         {props.dogInSystem ? <Button
         onPress={() => props.navigation.navigate('ScanCollar', {...props.params, dogInSystem:true})}
         disabledContainerStyle={{backgroundColor: 'grey'}}

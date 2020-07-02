@@ -22,6 +22,17 @@ export class DogSecondScreen extends Component {
     super(props);
     this.storeDogSecondScreen = new StoreDogSecondScreen(props.rootStore);
   }
+
+  componentDidMount(){
+    this._onFocusListener = this.props.navigation.addListener('didFocus', () => {
+      const { twoDogs } = this.props.rootStore;
+      console.log("DogFirstScreen -> componentDidMount -> twoDogs", twoDogs)
+        if(twoDogs){
+          this.storeDogSecondScreen.resetObservables();
+        }
+    })
+  }
+
   onChangeNameText = text => {
 
     this.storeDogSecondScreen.setWeight(text);
@@ -29,7 +40,7 @@ export class DogSecondScreen extends Component {
 
   render() {
     const name = this.props.navigation.state.params.dogName ? this.props.navigation.state.params.dogName: 'your dog' ;
-    const { signupDogObject } = this.storeDogSecondScreen;
+    const { signupDogObject, weight } = this.storeDogSecondScreen;
     return (
       <MobxProvider storeDogSecondScreen={this.storeDogSecondScreen}>
         <BaseView>
@@ -53,7 +64,7 @@ export class DogSecondScreen extends Component {
           <VerticalSpaceP height={0.07} />
           <Question text={`What is ${name} weight?  kg`} />
           <VerticalSpaceP height={0.02} />
-          <TextInputWithF placeholder={'2'} onChange={this.onChangeNameText} />
+          <TextInputWithF placeholder={'2'} onChange={this.onChangeNameText} value={String(weight)} />
           <Footer
             screenNumber={6}
             navigation={this.props.navigation}

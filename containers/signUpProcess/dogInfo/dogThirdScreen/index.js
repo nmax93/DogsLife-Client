@@ -20,6 +20,17 @@ export class DogThirdScreen extends Component {
     super(props);
     this.storeDogThirdScreen = new StoreDogThirdScreen(props.rootStore);
   }
+
+  componentDidMount(){
+    this._onFocusListener = this.props.navigation.addListener('didFocus', () => {
+      const { twoDogs } = this.props.rootStore;
+      console.log("DogThirdScreen -> componentDidMount -> twoDogs", twoDogs)
+        if(twoDogs){
+          this.storeDogThirdScreen.resetObservables();
+        }
+    })
+  }
+
   noCollarButtonPressed = () => {
     sendSignupInfo({signupUserObject: this.props.navigation.state.params.signupUserObject , 
       signupDogObject: Object.assign(this.props.navigation.state.params.signupDogObject )});
@@ -51,12 +62,10 @@ export class DogThirdScreen extends Component {
         <Question text={`Park preference.`} />
         <ParkPreference />
         <Footer
-          noCollarNeed
-          onPressNoCollar={this.noCollarButtonPressed}
           screenNumber={7}
           navigation={this.props.navigation}
           next={'ScanCollar'}
-          text={'Scan collar QR'}
+          text={'Next'}
           params={{signupUserObject: this.props.navigation.state.params.signupUserObject , 
                     signupDogObject: Object.assign(this.props.navigation.state.params.signupDogObject, signupObject)}}
         />
