@@ -15,10 +15,11 @@ import {DogsList} from '../dogInfo/components/dogsList';
 class UserInfo extends PureComponent {
   render() {
     const {userName, userAvatar} = this.props.storeProfileScreen;
+    const {userEmail} = this.props.storeProfileScreen.rootStore;
     return (
       <View style={styles.userInfoContainer}>
         <TouchableOpacity style={styles.userInfo}>
-          <NameAndDetails name={userName} />
+          <NameAndDetails email={userEmail} name={userName} />
           <View>
             <Image
               source={{

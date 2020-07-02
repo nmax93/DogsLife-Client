@@ -1,11 +1,12 @@
-import { observable, action, flow} from 'mobx';
-import {getProfileInfo} from './routes'
+import {observable, action, flow} from 'mobx';
+import {getProfileInfo} from './routes';
 
 export class StoreProfileScreen {
   constructor(rootStore) {
     this.rootStore = rootStore;
   }
 
+  @observable dogId = null;
   @observable name = null;
   @observable description = null;
   @observable breed = null;
@@ -13,8 +14,6 @@ export class StoreProfileScreen {
   @observable dateOfBirth = null;
   @observable image = null;
   @observable collar = null;
-  @observable groomingList = [];
-  @observable feediingList = [];
 
   @observable userName;
   @observable visitedGardens = [];
@@ -22,58 +21,62 @@ export class StoreProfileScreen {
   @observable userDogs = [];
   @observable selectedDog;
 
+  @observable loading = false;
+
   @action
-  setSelectedDog(dogObject){
+  setSelectedDog(dogObject) {
+    if (dogObject) {
       this.selectedDog = dogObject;
       this.name = dogObject.name;
+      this.dogId = dogObject.id;
       this.description = dogObject.description;
-      this.breed = dogObject.breed;
+      this.breed = dogObject.physical_params.breed;
       this.image = dogObject.avatar;
-      }
-
-
-  @action
-  setDogName(text){
-      this.name = text;
+    }
   }
 
   @action
-  setDogDescription(text){
-      this.description = text;
+  setDogName(text) {
+    this.name = text;
   }
 
   @action
-  buildDogArray(userDogsFromServer){
+  setDogDescription(text) {
+    this.description = text;
+  }
+
+  @action
+  buildDogArray(userDogsFromServer) {
+    if (userDogsFromServer) {
       this.userDogs = userDogsFromServer;
       this.setSelectedDog(userDogsFromServer[0]);
+    }
   }
 
   @action
-  buildUserProfile(user){
-      this.userName = user.name;
-      this.visitedGardens = user.visitedGardens;
-      this.userAvatar = user.avatar;
-
+  buildUserProfile(user) {
+    this.userName = user.name;
+    this.visitedGardens = user.visitedGardens;
+    this.userAvatar = user.avatar;
   }
-
 
   @action
   getProfile = flow(function*() {
     try {
-          const response = yield getProfileInfo(105);
-          if (response.status == 500) {
-            this.errorMsg = 'No response from server';
-          } else if (response.status == 501) {
-            this.errorMsg = response;
-          } else {
-            this.loading = false;
-            this.buildDogArray(response.userDogs)
-            this.buildUserProfile(response.foundUser)
-          }
+      this.loading = true;
+      const response = yield getProfileInfo(this.rootStore.userId, this.rootStore.userToken);
+      if (response.status == 500) {
+        this.errorMsg = 'No response from server';
+      } else if (response.status == 501) {
+        this.errorMsg = response;
+      } else {
+        this.loading = false;
+        this.buildDogArray(response.userDogs);
+        this.buildUserProfile(response.foundUser);
+      }
     } catch (e) {
-      this.errorMsg = 'Network error'
+      this.errorMsg = 'Network error';
       console.log('getProfile catch', e);
     }
   });
-  
 }

@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { inject, observer } from 'mobx-react';
-import { Image, View, TouchableOpacity, Text, StyleSheet, Dimensions } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import styles from '../styles'
 import { MedBoldText, SmallText } from '../../../../styles/fonts';
 
@@ -13,8 +13,6 @@ export class DogBreed extends PureComponent {
           <MedBoldText>Breed</MedBoldText>
           <View style={styles.rowViewSpaceBetween}>
             <SmallText style={[styles.textInput,styles.verticalCenterText]}>{breed}</SmallText>
-            <Image source={require('../../../../../images/right_arrow.png')}
-                    style={styles.arrow} />
           </View>
         </TouchableOpacity>
   )

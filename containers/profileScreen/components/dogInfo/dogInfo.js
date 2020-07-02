@@ -16,7 +16,7 @@ export class DogInfo extends Component {
         <VerticalSpace height={20} />
         <DogImage />
         <VerticalSpace height={40} />
-        <Activities />
+        {/* <Activities /> */}
         <Divider />
         <DogName />
         <Divider />
