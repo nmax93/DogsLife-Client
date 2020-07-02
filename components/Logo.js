@@ -3,24 +3,18 @@ import {View, Image, StyleSheet, Dimensions} from 'react-native';
 
 const width = Dimensions.get('window').width;
 
-export const Logo = () => (
-  <View style={styles.container}>
-    {/* <View style={styles.pugContainer}>
-      <Image source={require('../images/Pug.png')} style={styles.pug} />
-    </View> */}
+export const Logo = props => (
     <View style={styles.dogslifeContainer}>
       <Image
-        source={require('../images/dogslife.png')}
-        style={styles.dogslife}
+        source={require('../images/name.png')}
+        style={[styles.dogslife, props.logoStyle]}
       />
-    </View>
   </View>
 );
 
 
 const styles = StyleSheet.create({
   container: {
-    width: '100%',
     alignItems: 'center',
   },
   pugContainer: {
@@ -32,11 +26,10 @@ const styles = StyleSheet.create({
     height: '100%',
   },
   dogslifeContainer: {
-    height: width * 0.18,
     alignItems: 'center',
   },
   dogslife: {
     resizeMode: 'contain',
-    height: '100%',
+    height: width * 0.8,
   },
 });
