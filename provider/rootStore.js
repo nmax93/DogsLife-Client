@@ -1,22 +1,22 @@
-import {observable, action} from 'mobx';
-// import { StoreDashboardScreen } from '../screens/dashboardScreen/store';
-// import { StoreProfileScreen } from '../screens/profileScreen/store';
-// import { StoreLoginScreen } from '../screens/loginScreen/store';
+import {observable, action, flow} from 'mobx';
+import {getProfileInfo} from '../containers/profileScreen/store/routes'
 
 class rootStore {
-  // constructor() {
-  //     this.storeDashboardScreen = new StoreDashboardScreen(this)
-  //     this.storeProfileScreen = new StoreProfileScreen(this)
-  //     this.storeLoginScreen = new StoreLoginScreen(this)
-  // }
 
   @observable loading = false;
-  @observable userToken;
-  @observable userId = 1;
+  @observable userToken = '';
+  @observable userId = null;
   @observable userEmail;
   @observable userDogs = [];
   @observable selectedDog;
-  @observable isRegistered = false;
+  @observable isRegistered = true;
+  @observable twoDogs = false;
+  @observable onSecondDog = false;
+
+  @action
+  setOnSecondDog(value){
+    this.onSecondDog = value;
+  }
 
   @action
   setIsRegistered(value){
@@ -28,25 +28,37 @@ class rootStore {
     this.selectedDog = dogObject;
   }
 
-  // not in use when DB connected
-  @action
-  buildDogArray(demo) {
-    const releventDogs = demo.slice().filter(obj => obj.owmner_id === 1);
-    this.userDogs = releventDogs;
-    this.selectedDog = releventDogs[0];
-  }
-
   @action
   setUserInfo(info) {
     this.userToken = info.token;
-    this.userId = info.user_id;
+    this.userId = info.userId;
     this.userEmail = info.email;
   }
 
-  // @action
-  // setIsLoading(isLoading){
-  //     this.isLoading = isLoading;
-  // }
+   @action
+   setTwoDogs(value){
+       console.log("rootStore -> setTwoDogs -> value", value)
+       this.twoDogs = value;
+   }
+
+   @action
+   getProfile = flow(function*() {
+     try {
+           this.loading = true;
+           const response = yield getProfileInfo(this.userId, this.userToken);
+           if (response.status == 500) {
+             this.errorMsg = 'No response from server';
+           } else if (response.status == 501) {
+             this.errorMsg = response;
+           } else {
+             this.loading = false;
+             this.isRegistered = response.foundUser.is_registered;
+           }
+     } catch (e) {
+       this.errorMsg = 'Network error'
+       console.log('getProfile in rootStore catch', e);
+     }
+   });
 }
 
 export default new rootStore();
