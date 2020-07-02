@@ -25,8 +25,8 @@ export const SmallText = styled(Text)`
   font-size: ${DIMENSION_WIDTH * 0.035}px;
 `;
 export const BigQuestionText = styled(Text)`
-width: ${DIMENSION_WIDTH * 0.7}px;
-font-size: ${DIMENSION_WIDTH * 0.08}px;
+width: ${DIMENSION_WIDTH * 0.9}px;
+font-size: ${DIMENSION_WIDTH * 0.07}px;
 font-weight: bold;
 color: black;
 text-align: center;
@@ -34,7 +34,7 @@ text-align: center;
 `;
 
 export const ScanBigQuestionText = styled(Text)`
-font-size: ${DIMENSION_WIDTH * 0.08}px;
+font-size: ${DIMENSION_WIDTH * 0.07}px;
 font-weight: bold;
 color: black;
 text-align: center;
@@ -44,6 +44,7 @@ text-align: center;
 export const NoDogsBigQuestionText = styled(Text)`
 font-size: ${DIMENSION_WIDTH * 0.045}px;
 color: #333333;
+text-align: center;
 `;
 
 
