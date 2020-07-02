@@ -4,6 +4,7 @@ import {getProfileInfo} from '../containers/profileScreen/store/routes'
 class rootStore {
 
   @observable loading = false;
+  @observable userName = null;
   @observable userToken = '';
   @observable userId = null;
   @observable userEmail;
@@ -37,7 +38,6 @@ class rootStore {
 
    @action
    setTwoDogs(value){
-       console.log("rootStore -> setTwoDogs -> value", value)
        this.twoDogs = value;
    }
 
@@ -53,6 +53,7 @@ class rootStore {
            } else {
              this.loading = false;
              this.isRegistered = response.foundUser.is_registered;
+             this.userName = response.foundUser.name;
            }
      } catch (e) {
        this.errorMsg = 'Network error'
