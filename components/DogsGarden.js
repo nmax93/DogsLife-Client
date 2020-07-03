@@ -14,6 +14,7 @@ import Icon from 'react-native-vector-icons/AntDesign';
 import {WhenGardenEmpty} from './whenGardenEmpty';
 import {VerticalSpaceP} from './verticalSpace';
 import {SmallText} from '../containers/styles/fonts';
+import {consts} from '../consts';
 
 export default class DogsGarden extends Component {
   constructor(props) {
@@ -28,7 +29,7 @@ export default class DogsGarden extends Component {
   }
 
   getPresentDogs = async () => {
-    await fetch('http://localhost:5050/getPresentDogsInGarden', {
+    await fetch(`${consts.serverUrl}/getPresentDogsInGarden`, {
       method: 'POST',
       headers: {'Content-type': 'application/json'},
       body: JSON.stringify({gardenId: this.props.data.id}),

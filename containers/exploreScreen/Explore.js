@@ -59,7 +59,7 @@ class Explore extends Component {
     const {isRegistered} = this.props.rootStore;
     return (
       <View>
-        {isRegistered ? (
+        {!isRegistered ? (
           <Button
             style={{position: 'absolute', top: 0}}
             color="#e5c68b"

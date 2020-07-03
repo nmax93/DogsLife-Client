@@ -57,13 +57,13 @@ export const DogDetails = props => {
         />
         <SmallText>{getEnergy(props.energy)}</SmallText>
       </View>
-      {getLeftTime(props.dogDetailsInGarden.first_scan, props.avgTime) ? (
+      {getLeftTime(props.dogDetailsInGarden ? props.dogDetailsInGarden.first_scan : 0 , props.avgTime ? props.avgTime : 0 ) ? (
         <View style={styles.paramContainer}>
           <Image
             source={require('../../../images/counterclockwise.png')}
             style={styles.icon}
           />
-          <SmallText>{`${getLeftTime(props.dogDetailsInGarden.first_scan, props.avgTime)} Min`}</SmallText>
+          <SmallText>{`${getLeftTime(props.dogDetailsInGarden ? props.dogDetailsInGarden.first_scan : 0, props.avgTime ? props.avgTime : 0)} Min`}</SmallText>
         </View>
       ) : null}
     </View>

@@ -1,5 +1,6 @@
 import { consts } from '../../../consts';
 export async function getProfileInfo(userId, token) {    
+  try{
       const response = await fetch(`${consts.serverUrl}/getUserProfile`, {
         method: 'POST',
         headers: {
@@ -8,4 +9,8 @@ export async function getProfileInfo(userId, token) {
         body: JSON.stringify({userId, token})
       });    
     return await response.json();
+    }catch {
+      console.log(`cant get user profile, error: ${err}`);
+      return 0;
+    }
   }

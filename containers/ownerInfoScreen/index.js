@@ -12,6 +12,7 @@ import {DogsList} from './components/dogsList';
 import {StoreOwnerInfoScreen} from './store';
 import {InfoSection} from './components/infoSection'
 import { LoadingLady } from '../../components/LoadingLady';
+import { SendAMesButton } from './components/sendAMesButton';
 
 @inject('rootStore')
 @observer
@@ -47,6 +48,7 @@ class OwnerInfoScreen extends Component {
               </View>
             </ImageBackground>
             <InfoSection />
+            <SendAMesButton />
             <View style={styles.actionsProfile}>
               <DogsList />
             </View>
